@@ -12,6 +12,7 @@ function AllArticlesPage() {
         rowGap: 5,
         columnGap: 1,
         justifyContent: "space-around",
+        paddingTop: 5,
       }}
     >
       {articlesData.articles.map((article) => (

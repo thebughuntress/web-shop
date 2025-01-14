@@ -123,6 +123,9 @@ export default function AppBar() {
           >
             <MenuIcon />
           </IconButton>
+          <Button color="inherit" onClick={() => navigate("/articles")}>
+            All Articles
+          </Button>
           <Button color="inherit" href="#web-development">
             Web Development
           </Button>
