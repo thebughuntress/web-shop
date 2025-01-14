@@ -20,11 +20,19 @@ function ArticleDetailPage() {
   };
 
   return (
-    <Box sx={{ padding: 2 }}>
+    <Box sx={{ padding: 2}}>
+      <Typography variant="h5" sx={{ color: "red", fontWeight: "bold" }}>
+        TODO: Article Details
+      </Typography>
+
+      {article && (
+        <Typography variant="h4" sx={{ marginY: 4 }}>
+          {article.name}
+        </Typography>
+      )}
       <Button sx={{ m: 2 }} onClick={handleBackToHome}>
         Back to home
       </Button>
-      {article && <Typography variant="h4">{article.name}</Typography>}
     </Box>
   );
 }

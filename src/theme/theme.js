@@ -4,13 +4,13 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#1976d2', // Custom primary color
+      main: '#232f3e', // Custom primary color
     },
     secondary: {
       main: '#9c27b0', // Custom secondary color
     },
     background: {
-      default: '#f4f6f8', // Background color for the whole app
+      default: '#E3E6E6', // Background color for the whole app
     },
     text: {
       primary: '#333', // Primary text color

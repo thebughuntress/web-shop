@@ -9,7 +9,7 @@ function Footer() {
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
-        backgroundColor: "#333",
+        backgroundColor: "primary.dark",
         color: "#fff",
         padding: "20px",
         mt: 4,

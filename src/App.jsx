@@ -10,36 +10,40 @@ import theme from "./theme/theme";
 import AppBar from "./components/AppBar/AppBar";
 import Footer from "./components/Footer/Footer";
 import { Box } from "@mui/material";
+import { Provider } from "react-redux";
+import store from "./store/store";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          minHeight: "100vh",
-          justifyContent: "center",
-          textAlign: "center",
-        }}
-      >
-        <CssBaseline />
-        <Router>
-          <AppBar />
-          <Box sx={{ flexGrow: 1 }}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/cart" element={<CartPage />} />
-              <Route path="/articles" element={<AllArticlesPage />} />
-              <Route
-                path="/article/:articleId"
-                element={<ArticleDetailPage />}
-              />
-            </Routes>
-          </Box>
-          <Footer />
-        </Router>
-      </Box>
+      <Provider store={store}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            minHeight: "100vh",
+            justifyContent: "center",
+            textAlign: "center",
+          }}
+        >
+          <CssBaseline />
+          <Router>
+            <AppBar />
+            <Box sx={{ flexGrow: 1 }}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/cart" element={<CartPage />} />
+                <Route path="/articles" element={<AllArticlesPage />} />
+                <Route
+                  path="/article/:articleId"
+                  element={<ArticleDetailPage />}
+                />
+              </Routes>
+            </Box>
+            <Footer />
+          </Router>
+        </Box>
+      </Provider>
     </ThemeProvider>
   );
 }

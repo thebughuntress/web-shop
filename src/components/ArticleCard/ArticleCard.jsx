@@ -6,16 +6,22 @@ import {
   Button,
   CardActions,
 } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { addToCart } from "../../store/articleSlice";
+
 
 const PLACEHOLDER_IMAGE =
   "https://cdn.prod.website-files.com/5f2b1efb0f881760ffdc5c96/63c12849a1c7e9df64c819fc_programming-languages-shutterstock-1680857539.webp";
 
 function ArticleCard({ article }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
 
   const handleAddToCart = () => {
-    console.log("Added to cart:" + article.name);
+    dispatch(addToCart({ id: article.id, quantity: 1 }));
+    console.log("Added to cart: ", article.name);
   };
 
   const handleViewDetails = () => {
@@ -24,7 +30,7 @@ function ArticleCard({ article }) {
 
   return (
     <Card
-      sx={{ width: "20%", height: "40vh", cursor: "pointer", boxShadow: 3 }}
+      sx={{ width: "20%", height: "40vh", cursor: "pointer", boxShadow: 0 }}
     >
       <CardMedia
         component="img"
