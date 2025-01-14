@@ -30,7 +30,7 @@ function ArticleCard({ article }) {
 
   return (
     <Card
-      sx={{ width: "22%", height: "280px", cursor: "pointer", boxShadow: 0 }}
+      sx={{ width: "20%", height: "280px", cursor: "pointer", boxShadow: 0 }}
     >
       <CardMedia
         component="img"
