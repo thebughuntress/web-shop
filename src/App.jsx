@@ -7,12 +7,14 @@ import CartPage from "./pages/CartPage/CartPage";
 import AllArticlesPage from "./pages/AllArticlesPage/AllArticlesPage";
 import ArticleDetailPage from "./pages/ArticleDetailPage/ArticleDetailPage";
 import theme from "./theme/theme";
+import AppBar from "./components/AppBar/AppBar";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
+        <AppBar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<CartPage />} />

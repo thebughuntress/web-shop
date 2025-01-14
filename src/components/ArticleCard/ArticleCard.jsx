@@ -32,7 +32,7 @@ function ArticleCard({ article }) {
         image={article.imageUrl || PLACEHOLDER_IMAGE}
         alt={article.name}
       />
-      <CardContent sx={{ height: "35%", m: 0, p: 0 }}>
+      <CardContent sx={{ height: "35%", m: 0, p: 0, textAlign: "center" }}>
         <Typography variant="h6" sx={{ fontWeight: "bold", paddingTop: 2 }}>
           {article.name}
         </Typography>
