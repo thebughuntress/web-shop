@@ -30,16 +30,17 @@ function ArticleCard({ article }) {
 
   return (
     <Card
-      sx={{ width: "20%", height: "40vh", cursor: "pointer", boxShadow: 0 }}
+      sx={{ width: "22%", height: "280px", cursor: "pointer", boxShadow: 0 }}
     >
       <CardMedia
         component="img"
         height="45%"
         image={article.imageUrl || PLACEHOLDER_IMAGE}
         alt={article.name}
+        sx={{p:1}}
       />
-      <CardContent sx={{ height: "35%", m: 0, p: 0, textAlign: "center" }}>
-        <Typography variant="h6" sx={{ fontWeight: "bold", paddingTop: 2 }}>
+      <CardContent sx={{ height: "30%", m: 0, p: 0, textAlign: "center" }}>
+        <Typography variant="h5" sx={{ fontWeight: "bold", paddingTop: 2 }}>
           {article.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
@@ -49,16 +50,16 @@ function ArticleCard({ article }) {
       <CardActions
         sx={{
           display: "flex",
-          justifyContent: "center",
-          height: "20%",
+          justifyContent: "space-around",
+          height: "25%",
           m: 0,
-          p: 0,
+          p: "5px",
         }}
       >
-        <Button size="small" variant="contained" onClick={handleViewDetails}>
-          View Details
+        <Button variant="outlined" onClick={handleViewDetails}>
+          Details
         </Button>
-        <Button size="small" variant="contained" onClick={handleAddToCart}>
+        <Button  variant="contained" onClick={handleAddToCart}>
           Add to cart
         </Button>
       </CardActions>

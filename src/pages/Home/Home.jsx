@@ -9,14 +9,12 @@ function Home() {
       <Box
         sx={{
           background: "linear-gradient(to right, lightyellow, white)",
-          height: "32vh",
+          height: { md: "35vh", xl: "30vh" },
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
           flexDirection: "column",
           boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-
-          gap: 2,
         }}
       >
         <Typography variant="h2">
@@ -28,30 +26,42 @@ function Home() {
       </Box>
       <Box
         sx={{
-          m: 3,
+          m: 2,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
         }}
       >
-        {/* <Typography
-          variant="h5"
-          sx={{ fontWeight: "bold", color: "primary.light" }}
-        >
-          Top Picks Today
-        </Typography> */}
         <Box
           sx={{
-            width: "80%",
+            width: { md: "90%", xl: "75%" },
             display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-around",
-            paddingTop: 2,
+            flexDirection: "column",
+            marginY: 1,
           }}
         >
-          {articlesData.articles.slice(0, 4).map((article) => (
-            <ArticleCard key={article.id} article={article} />
-          ))}
+          <Typography
+            variant="h5"
+            sx={{
+              fontWeight: 800,
+              color: "primary.light",
+              textAlign: "left",
+              marginBottom: 2,
+            }}
+          >
+            Top Picks Today
+          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "space-between",
+            }}
+          >
+            {articlesData.articles.slice(0, 4).map((article) => (
+              <ArticleCard key={article.id} article={article} />
+            ))}
+          </Box>
         </Box>
       </Box>
     </Box>
