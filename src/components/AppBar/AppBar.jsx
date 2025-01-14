@@ -10,13 +10,15 @@ import {
   InputAdornment,
 } from "@mui/material";
 
-import shopIcon from "../../assets/icons/icons8-shop-100.png";
+import shopIcon from "../../assets/icons/icons8-shopee-100.png";
 import cartIcon from "../../assets/icons/icons8-shopping-cart-100.png";
+
 import { useNavigate } from "react-router-dom";
 //import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
+import LanguageButton from "../LanguageButton/LanguageButton";
 
 export default function AppBar() {
   const navigate = useNavigate();
@@ -40,15 +42,18 @@ export default function AppBar() {
             }}
           >
             <Box
-              sx={{ display: "flex", alignItems: "center" , cursor: "pointer",}}
+              sx={{ display: "flex", alignItems: "center", cursor: "pointer" }}
               onClick={() => navigate("/")}
             >
               <img
                 src={shopIcon}
                 alt="cart icon"
-                style={{ width: 45, height: "auto" }}
+                style={{ width: 40, height: "auto" }}
               />
-              <Typography variant="h5" sx={{ marginLeft: 2, fontWeight: 600 }}>
+              <Typography
+                variant="h5"
+                sx={{ marginLeft: 2, fontWeight: 600, marginTop: 1 }}
+              >
                 webshop.com
               </Typography>
             </Box>
@@ -86,9 +91,11 @@ export default function AppBar() {
             sx={{
               display: "flex",
               justifyContent: "flex-end",
+              alignItems: "center",
               width: "33%",
             }}
           >
+            <LanguageButton />
             <Button
               sx={{ fontSize: "18px" }}
               color="inherit"
@@ -106,7 +113,7 @@ export default function AppBar() {
           </Box>
         </Toolbar>
 
-        <Toolbar sx={{ backgroundColor: "primary",  height: "68px", }}>
+        <Toolbar sx={{ backgroundColor: "primary", height: "68px" }}>
           <IconButton
             size="large"
             edge="start"
