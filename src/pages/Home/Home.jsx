@@ -7,7 +7,7 @@ function Home() {
       <Typography
         variant="h1"
         sx={{
-          fontSize: "50px",
+          fontSize: "40px",
           fontWeight: 600,
           textAlign: "center",
           marginY: 5,

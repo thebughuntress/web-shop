@@ -6,30 +6,31 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import shopIcon from "../../assets/icons/icons8-shop-100.png";
+import cartIcon from "../../assets/icons/icons8-shopping-cart-100.png";
 import { useNavigate } from "react-router-dom";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+//import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 export default function AppBar() {
   const navigate = useNavigate();
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, textAlign: "start" }}>
       <MuiAppBar position="static">
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             size="large"
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 1 }}
+            sx={{ mr: 0 }}
             onClick={() => navigate("/")}
           >
             <img
               src={shopIcon}
               alt="shop icon"
-              style={{ width: 30, height: 30 }}
-            />{" "}
-          </IconButton>
+              style={{ width: 30, height: "auto" }}
+            />
+          </IconButton> */}
           <Typography
             variant="h5"
             sx={{ flexGrow: 1, cursor: "pointer" }}
@@ -39,7 +40,13 @@ export default function AppBar() {
           </Typography>
           <Button
             color="inherit"
-            startIcon={<ShoppingCartIcon />}
+            startIcon={
+              <img
+                src={cartIcon}
+                alt="cart icon"
+                style={{ width: 40, height: "auto" }}
+              />
+            }
             onClick={() => navigate("/cart")}
           >
             Go to Cart
