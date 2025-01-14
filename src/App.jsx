@@ -22,8 +22,6 @@ function App() {
             display: "flex",
             flexDirection: "column",
             minHeight: "100vh",
-            justifyContent: "center",
-            textAlign: "center",
           }}
         >
           <CssBaseline />

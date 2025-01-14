@@ -9,7 +9,7 @@ function Home() {
       <Box
         sx={{
           background: "linear-gradient(to right, lightyellow, white)",
-          height: { md: "35vh", xl: "35vh" },
+          height: { md: "28vh", xl: "34vh" },
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -17,11 +17,11 @@ function Home() {
           boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
         }}
       >
-        <Typography variant="h2">
+        <Typography variant="h3">
           Welcome to <b>webshop.com</b>
         </Typography>
         <Typography variant="h5" sx={{ fontWeight: 300 }}>
-          Shop Smart, Shop the Best!
+          Shop Smart, Shop Better!
         </Typography>
       </Box>
       <Box

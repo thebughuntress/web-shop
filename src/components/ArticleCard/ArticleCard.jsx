@@ -40,7 +40,7 @@ function ArticleCard({ article }) {
         sx={{p:1}}
       />
       <CardContent sx={{ height: "30%", m: 0, p: 0, textAlign: "center" }}>
-        <Typography variant="h5" sx={{ fontWeight: "bold", paddingTop: 2 }}>
+        <Typography variant="h5" sx={{ fontWeight: "bold", paddingTop: 2, padding: 1 }}>
           {article.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">

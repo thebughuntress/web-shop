@@ -33,28 +33,8 @@ function ArticleDetailPage() {
     (art) => art.id === parseInt(articleId)
   );
 
-  // Function to handle navigating back to the home page
-  const handleBackToHome = () => {
-    navigate("/");
-  };
-
   return (
-    <Box sx={{ paddingX: 4 }}>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "flex-end",
-         
-        }}
-      >
-        <Button
-          sx={{ marginTop: 2 }}
-          onClick={handleBackToHome}
-          variant="outlined"
-        >
-          Back to Home
-        </Button>
-      </Box>
+    <Box sx={{ paddingTop: 4 }}>
       {article ? (
         <Card sx={{ maxWidth: 600, margin: "auto" }}>
           <CardMedia
@@ -70,16 +50,16 @@ function ArticleDetailPage() {
             >
               {article.name}
             </Typography>
-            <Typography variant="body1" sx={{ mb: 2 }}>
+            <Typography variant="body1" sx={{ mb: 1 }}>
               {article.description}
             </Typography>
-            <Typography variant="h6" sx={{ mb: 2, color: "green" }}>
-              Price: ${article.price}
+            <Typography variant="h6" sx={{ mb: 1, color: "green" }}>
+              Price: {article.price} €
             </Typography>
-            <Typography variant="body2" sx={{ mb: 2 }}>
+            <Typography variant="body2" sx={{ mb: 1 }}>
               Category: {article.category}
             </Typography>
-            <Typography variant="body2" sx={{ mb: 2, color: "primary.light" }}>
+            <Typography variant="body2" sx={{ mb: 1, color: "primary.light" }}>
               Stock: {article.stock} available
             </Typography>
             <CardActions sx={{ display: "flex", justifyContent: "end" }}>
@@ -99,6 +79,13 @@ function ArticleDetailPage() {
           Article not found!
         </Typography>
       )}
+      <Box
+        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+      >
+        <Button sx={{ marginTop: 4 }} onClick={() => navigate("/articles")}>
+          Back to all Articles
+        </Button>
+      </Box>
     </Box>
   );
 }

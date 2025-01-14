@@ -8,6 +8,7 @@ import {
   IconButton,
   TextField,
   InputAdornment,
+  Chip,
 } from "@mui/material";
 
 import shopIcon from "../../assets/icons/icons8-shopee-100.png";
@@ -72,7 +73,7 @@ export default function AppBar() {
               slotProps={{
                 input: {
                   startAdornment: (
-                    <InputAdornment>
+                    <InputAdornment position="start">
                       <SearchIcon sx={{ marginRight: 1 }} />
                     </InputAdornment>
                   ),
