@@ -13,12 +13,18 @@ import { useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import LanguageButton from "../LanguageButton/LanguageButton";
 import ArticleSearch from "../ArticleSearch/ArticleSearch";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
 import { setCategory } from "../../store/categorySlice";
 
 export default function AppBar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  // Access the selected category from Redux
+  const selectedCategory = useSelector(
+    (state) => state.category.selectedCategory
+  );
 
   const categories = [
     "All Articles",
@@ -33,7 +39,6 @@ export default function AppBar() {
 
   const handleCategoryClick = (category) => {
     dispatch(setCategory(category));
-
 
     if (category === "All Articles") {
       navigate("/articles");
@@ -126,6 +131,16 @@ export default function AppBar() {
               key={category}
               color="inherit"
               onClick={() => handleCategoryClick(category)}
+              sx={{
+                height: "100%",
+                borderRadius:0,
+                borderBottom:
+                  selectedCategory === category
+                    ? "4px solid white" 
+                    : "none",
+                paddingBottom: "5px",
+                fontWeight: selectedCategory === category ? "bold" : "normal", // Optionally make selected category bold
+              }}
             >
               {category}
             </Button>
