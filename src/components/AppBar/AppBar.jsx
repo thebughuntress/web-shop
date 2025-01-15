@@ -12,7 +12,7 @@ import shopIcon from "../../assets/icons/icons8-shopee-100.png";
 import { useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import LanguageButton from "../LanguageButton/LanguageButton";
-import Search from "../Search/Search";
+import ArticleSearch from "../ArticleSearch/ArticleSearch";
 
 export default function AppBar() {
   const navigate = useNavigate();
@@ -53,16 +53,16 @@ export default function AppBar() {
             </Box>
           </Box>
 
-          {/* Simplified Search */}
           <Box
             sx={{
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
               width: "33%",
+              //backgroundColor: "blue"
             }}
           >
-            <Search />
+            <ArticleSearch />
           </Box>
 
           <Box

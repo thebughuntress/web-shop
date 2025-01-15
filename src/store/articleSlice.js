@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   cart: [], // For the shopping cart (with id and quantity)
+  searchText: "", // For managing search text
 };
 
 const articleSlice = createSlice({
@@ -35,9 +36,18 @@ const articleSlice = createSlice({
       const { id } = action.payload;
       state.cart = state.cart.filter((item) => item.id !== id);
     },
+
+    // Action to update the search text in the state
+    setSearchText: (state, action) => {
+      state.searchText = action.payload;
+    },
   },
 });
 
-export const { addToCart, reduceQuantityOfArticleInCart, removeArticleFromCart } =
-  articleSlice.actions;
+export const {
+  addToCart,
+  reduceQuantityOfArticleInCart,
+  removeArticleFromCart,
+  setSearchText,
+} = articleSlice.actions;
 export default articleSlice.reducer;

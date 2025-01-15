@@ -30,10 +30,13 @@ function ArticleCard({ article }) {
     <Card
       sx={{
         width: "22%",
-        height: "280px",
+        height: "310px",
         cursor: "pointer",
         boxShadow: 0,
         p: 1,
+        display: "flex",
+        flexDirection: "column", // Ensures content stacks vertically
+        justifyContent: "space-between", // Space between content and actions
       }}
     >
       <CardMedia
@@ -43,7 +46,7 @@ function ArticleCard({ article }) {
         alt={article.name}
       />
       <CardContent sx={{ textAlign: "center" }}>
-        <Typography variant="h5" sx={{ fontWeight: "bold", paddingTop: 2 }}>
+        <Typography variant="h5" sx={{ fontWeight: "bold", paddingTop: 0 }}>
           {article.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
