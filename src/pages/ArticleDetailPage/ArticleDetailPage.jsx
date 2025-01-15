@@ -8,6 +8,7 @@ import {
   CardMedia,
   CardContent,
   CardActions,
+  Grid,
 } from "@mui/material";
 import articlesData from "../../db/articles.json";
 import { useDispatch } from "react-redux";
@@ -34,32 +35,38 @@ function ArticleDetailPage() {
   return (
     <Box sx={{ paddingTop: 4 }}>
       {article ? (
-        <Card sx={{ maxWidth: 600, margin: "auto" }}>
+        <Card sx={{ maxWidth: 800, margin: "auto", display: "flex" }}>
+          {/* Left side for image */}
           <CardMedia
             component="img"
-            height="250"
+            sx={{ width: "40%", objectFit: "cover" }}
             image={article.imageUrl || cardImgPlaceholder}
             alt={article.name}
           />
-          <CardContent>
-            <Typography
-              variant="h4"
-              sx={{ fontWeight: "bold", mb: 2, color: "primary.dark" }}
-            >
-              {article.name}
-            </Typography>
-            <Typography variant="body1" sx={{ mb: 1 }}>
-              {article.description}
-            </Typography>
-            <Typography variant="h6" sx={{ mb: 1, color: "green" }}>
-              Price: {article.price} €
-            </Typography>
-            <Typography variant="body2" sx={{ mb: 1 }}>
-              Category: {article.category}
-            </Typography>
-            <Typography variant="body2" sx={{ mb: 1, color: "primary.light" }}>
-              Stock: {article.stock} available
-            </Typography>
+
+          {/* Right side for content */}
+          <Box sx={{ padding: 2, display: "flex", flexDirection: "column", width: "60%" }}>
+            <CardContent sx={{ flexGrow: 1 }}>
+              <Typography
+                variant="h4"
+                sx={{ fontWeight: "bold", mb: 2, color: "primary.dark" }}
+              >
+                {article.name}
+              </Typography>
+              <Typography variant="body1" sx={{ mb: 1 }}>
+                {article.description}
+              </Typography>
+              <Typography variant="h6" sx={{ mb: 1, color: "green" }}>
+                Price: {article.price} €
+              </Typography>
+              <Typography variant="body2" sx={{ mb: 1 }}>
+                Category: {article.category}
+              </Typography>
+              <Typography variant="body2" sx={{ mb: 1, color: "primary.light" }}>
+                Stock: {article.stock} available
+              </Typography>
+            </CardContent>
+
             <CardActions sx={{ display: "flex", justifyContent: "end" }}>
               <Button
                 size="large"
@@ -70,7 +77,7 @@ function ArticleDetailPage() {
                 Add to Cart
               </Button>
             </CardActions>
-          </CardContent>
+          </Box>
         </Card>
       ) : (
         <Typography variant="h6" color="error" textAlign="center">
