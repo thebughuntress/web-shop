@@ -25,7 +25,7 @@ function App() {
           }}
         >
           <CssBaseline />
-          <Router basename="/web-shop/">
+          <Router basename="/web-shop">
             <AppBar />
             <Box sx={{ flexGrow: 1 }}>
               <Routes>

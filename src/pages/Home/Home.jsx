@@ -8,7 +8,7 @@ function Home() {
       <Box
         sx={{
           background: "linear-gradient(to right, lightyellow, white)",
-          height: "20vh",
+          height: "40vh",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
