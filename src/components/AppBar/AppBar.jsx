@@ -20,6 +20,7 @@ import { useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import LanguageButton from "../LanguageButton/LanguageButton";
+import Search from "../Search/Search";
 
 export default function AppBar() {
   const navigate = useNavigate();
@@ -69,23 +70,7 @@ export default function AppBar() {
               width: "33%",
             }}
           >
-            <TextField
-              slotProps={{
-                input: {
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <SearchIcon sx={{ marginRight: 1 }} />
-                    </InputAdornment>
-                  ),
-                },
-              }}
-              sx={{
-                backgroundColor: "white",
-                borderRadius: "4px",
-                width: "20vw",
-              }}
-              placeholder="Search..."
-            />
+            <Search />
           </Box>
 
           <Box

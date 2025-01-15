@@ -1,7 +1,6 @@
 import { Box, Typography } from "@mui/material";
-import AllArticlesPage from "../AllArticlesPage/AllArticlesPage";
-import articlesData from "../../db/articles.json";
 import ArticleCard from "../../components/ArticleCard/ArticleCard";
+import articlesData from "../../db/articles.json";
 
 function Home() {
   return (
@@ -9,7 +8,7 @@ function Home() {
       <Box
         sx={{
           background: "linear-gradient(to right, lightyellow, white)",
-          height: { md: "28vh", xl: "34vh" },
+          height: "20vh",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
