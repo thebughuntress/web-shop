@@ -12,13 +12,11 @@ import {
 import articlesData from "../../db/articles.json";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../store/articleSlice";
+import cardImgPlaceholder from "../../assets/images/card-img-placeholder.png";
 
 function ArticleDetailPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const PLACEHOLDER_IMAGE =
-    "https://cdn.prod.website-files.com/5f2b1efb0f881760ffdc5c96/63c12849a1c7e9df64c819fc_programming-languages-shutterstock-1680857539.webp";
 
   const handleAddToCart = () => {
     dispatch(addToCart({ id: article.id, quantity: 1 }));
@@ -40,7 +38,7 @@ function ArticleDetailPage() {
           <CardMedia
             component="img"
             height="250"
-            image={article.imageUrl || PLACEHOLDER_IMAGE}
+            image={article.imageUrl || cardImgPlaceholder}
             alt={article.name}
           />
           <CardContent>

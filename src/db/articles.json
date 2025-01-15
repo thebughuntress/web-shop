@@ -7,7 +7,7 @@
       "price": 49.99,
       "category": "Programming",
       "stock": 100,
-      "imageUrl": "https://cdn.shopify.com/s/files/1/0070/5901/3716/files/coding_background.jpg?v=1688538955"
+      "imageUrl": "https://cdn.midjourney.com/282de57c-ef36-4801-aa23-606a1efd0df1/0_2.png"
     },
     {
       "id": 2,
@@ -16,7 +16,7 @@
       "price": 79.99,
       "category": "Programming",
       "stock": 50,
-      "imageUrl": ""
+      "imageUrl": "https://cdn.midjourney.com/282de57c-ef36-4801-aa23-606a1efd0df1/0_3.png"
     },
     {
       "id": 3,
@@ -25,7 +25,7 @@
       "price": 29.99,
       "category": "Productivity",
       "stock": 200,
-      "imageUrl": ""
+      "imageUrl": "https://cdn.midjourney.com/282de57c-ef36-4801-aa23-606a1efd0df1/0_1.png"
     },
     {
       "id": 4,

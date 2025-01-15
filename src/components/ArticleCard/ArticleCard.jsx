@@ -9,9 +9,8 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../store/articleSlice";
+import cardImgPlaceholder from "../../assets/images/card-img-placeholder.png"
 
-const PLACEHOLDER_IMAGE =
-  "https://cdn.prod.website-files.com/5f2b1efb0f881760ffdc5c96/63c12849a1c7e9df64c819fc_programming-languages-shutterstock-1680857539.webp";
 
 function ArticleCard({ article }) {
   const navigate = useNavigate();
@@ -42,7 +41,7 @@ function ArticleCard({ article }) {
       <CardMedia
         component="img"
         height="45%"
-        image={article.imageUrl || PLACEHOLDER_IMAGE}
+        image={article.imageUrl || cardImgPlaceholder}
         alt={article.name}
       />
       <CardContent sx={{ textAlign: "center" }}>
