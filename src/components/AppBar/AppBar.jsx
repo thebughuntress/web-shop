@@ -13,9 +13,34 @@ import { useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import LanguageButton from "../LanguageButton/LanguageButton";
 import ArticleSearch from "../ArticleSearch/ArticleSearch";
+import { useDispatch } from "react-redux";
+import { setCategory } from "../../store/categorySlice";
 
 export default function AppBar() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const categories = [
+    "All Articles",
+    "Programming",
+    "Productivity",
+    "Web Development",
+    "Database",
+    "Data Science",
+    "Mobile Development",
+    "Blockchain",
+  ];
+
+  const handleCategoryClick = (category) => {
+    dispatch(setCategory(category));
+
+
+    if (category === "All Articles") {
+      navigate("/articles");
+    } else {
+      navigate(`/articles#${category.toLowerCase().replace(/ /g, "-")}`);
+    }
+  };
 
   return (
     <Box sx={{ flexGrow: 1, textAlign: "start" }}>
@@ -95,24 +120,16 @@ export default function AppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Button color="inherit" onClick={() => navigate("/articles")}>
-            All Articles
-          </Button>
-          <Button color="inherit" href="#web-development">
-            Web Development
-          </Button>
-          <Button color="inherit" href="#data-science">
-            Data Science
-          </Button>
-          <Button color="inherit" href="#mobile-development">
-            Mobile Development
-          </Button>
-          <Button color="inherit" href="#ai-ml">
-            AI/ML
-          </Button>
-          <Button color="inherit" href="#cybersecurity">
-            Cybersecurity
-          </Button>
+
+          {categories.map((category) => (
+            <Button
+              key={category}
+              color="inherit"
+              onClick={() => handleCategoryClick(category)}
+            >
+              {category}
+            </Button>
+          ))}
         </Toolbar>
       </MuiAppBar>
     </Box>
