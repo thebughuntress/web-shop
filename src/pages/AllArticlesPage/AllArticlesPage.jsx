@@ -6,28 +6,43 @@ import { useDispatch, useSelector } from "react-redux";
 import { setSearchText } from "../../store/articleSlice";
 
 function AllArticlesPage() {
-   const dispatch = useDispatch();
-  // Get searchText from Redux store
+  const dispatch = useDispatch();
+  // Get searchText and category from Redux store
   const searchText = useSelector((state) => state.articles.searchText);
+  const selectedCategory = useSelector(
+    (state) => state.category.selectedCategory
+  );
+
   const [filteredArticles, setFilteredArticles] = useState(
     articlesData.articles
   );
 
-  // Filter articles based on searchText in ArticleSearch
+  // Effect to filter articles when search text or selected category changes
   useEffect(() => {
-    if (!searchText) {
-      setFilteredArticles(articlesData.articles);
-    } else {
+    let filtered = articlesData.articles;
+
+    // Filter by selected category
+    if (selectedCategory && selectedCategory !== "All Articles") {
+      filtered = filtered.filter(
+        (article) =>
+          article.category.toLowerCase() === selectedCategory.toLowerCase()
+      );
+    }
+
+    // Filter by search text
+    if (searchText) {
       const lowerCaseSearchText = searchText.toLowerCase();
-      const filtered = articlesData.articles.filter(
+      filtered = filtered.filter(
         (article) =>
           article.name.toLowerCase().includes(lowerCaseSearchText) ||
           article.description.toLowerCase().includes(lowerCaseSearchText) ||
           article.category.toLowerCase().includes(lowerCaseSearchText)
       );
-      setFilteredArticles(filtered);
     }
-  }, [searchText]);
+
+    // Update filtered articles
+    setFilteredArticles(filtered);
+  }, [selectedCategory, searchText]);
 
   const handleClearSearch = () => {
     // Dispatch the action to clear the search text
