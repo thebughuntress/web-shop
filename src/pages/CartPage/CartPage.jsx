@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import emptyCartIcon from "../../assets/icons/icons8-empty-100.png";
 import {
   Box,
+  Button,
   Typography,
   Table,
   TableBody,
@@ -17,9 +20,12 @@ import articlesData from "../../db/articles.json";
 import {
   addToCart,
   reduceQuantityOfArticleInCart,
+  removeArticleFromCart,
 } from "../../store/articleSlice";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 const CartPage = () => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [articles, setArticles] = useState([]);
@@ -34,6 +40,10 @@ const CartPage = () => {
 
   const handleDecreaseQuantity = (id) => {
     dispatch(reduceQuantityOfArticleInCart({ id, quantity: 1 }));
+  };
+
+  const handleDeleteArticleFromCart = (id) => {
+    dispatch(removeArticleFromCart({ id }));
   };
 
   useEffect(() => {
@@ -87,24 +97,27 @@ const CartPage = () => {
         flexDirection: "column",
       }}
     >
-      <Typography
-        variant="h5"
-        sx={{ color: "primary.dark", fontWeight: "bold", marginY: 2 }}
-      >
-        Shopping Cart
-      </Typography>
-
       {articles.length === 0 && (
-        <Typography
-          sx={{
-            color: "primary.light",
-            textAlign: "center",
-            marginTop: 2,
-            fontStyle: "italic",
-          }}
-        >
-          No items in cart!
-        </Typography>
+        <>
+          <img
+            src={emptyCartIcon}
+            alt="cart icon"
+            style={{ width: 100, height: "auto" }}
+          />
+          <Typography
+            variant="h5"
+            sx={{
+              my: 2,
+              color: "primary.dark",
+              fontWeight: "bold",
+            }}
+          >
+            Oops! Your cart is empty!
+          </Typography>
+          <Button sx={{ marginTop: 2 }} onClick={() => navigate("/articles")}>
+            Show Articles
+          </Button>
+        </>
       )}
 
       {articles.length > 0 && (
@@ -146,7 +159,20 @@ const CartPage = () => {
               {articles.map((item, index) => (
                 <TableRow key={index}>
                   <TableCell>
-                    <b>{item.article.name}</b>
+                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                      <Typography sx={{ fontWeight: "bold", mr: 1 }}>
+                        {item.article.name}
+                      </Typography>
+
+                      <IconButton
+                        size="small"
+                        onClick={() =>
+                          handleDeleteArticleFromCart(item.article.id)
+                        }
+                      >
+                        <HighlightOffIcon />
+                      </IconButton>
+                    </Box>
                   </TableCell>
                   <TableCell align="center">{item.article.price} €</TableCell>
                   <TableCell align="center">
@@ -173,7 +199,7 @@ const CartPage = () => {
                       </IconButton>
                     </Box>
                   </TableCell>
-                   <TableCell align="right" sx={{ width: "150px" }}>
+                  <TableCell align="right" sx={{ width: "150px" }}>
                     {item.total?.toFixed(2)} €
                   </TableCell>
                 </TableRow>

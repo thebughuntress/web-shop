@@ -7,9 +7,8 @@ import {
   CardActions,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { addToCart } from "../../store/articleSlice";
-
 
 const PLACEHOLDER_IMAGE =
   "https://cdn.prod.website-files.com/5f2b1efb0f881760ffdc5c96/63c12849a1c7e9df64c819fc_programming-languages-shutterstock-1680857539.webp";
@@ -17,7 +16,6 @@ const PLACEHOLDER_IMAGE =
 function ArticleCard({ article }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
 
   const handleAddToCart = () => {
     dispatch(addToCart({ id: article.id, quantity: 1 }));
@@ -30,17 +28,22 @@ function ArticleCard({ article }) {
 
   return (
     <Card
-      sx={{ width: "20%", height: "280px", cursor: "pointer", boxShadow: 0 }}
+      sx={{
+        width: "22%",
+        height: "280px",
+        cursor: "pointer",
+        boxShadow: 0,
+        p: 1,
+      }}
     >
       <CardMedia
         component="img"
         height="45%"
         image={article.imageUrl || PLACEHOLDER_IMAGE}
         alt={article.name}
-        sx={{p:1}}
       />
-      <CardContent sx={{ height: "30%", m: 0, p: 0, textAlign: "center" }}>
-        <Typography variant="h5" sx={{ fontWeight: "bold", paddingTop: 2, padding: 1 }}>
+      <CardContent sx={{ textAlign: "center" }}>
+        <Typography variant="h5" sx={{ fontWeight: "bold", paddingTop: 2 }}>
           {article.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
@@ -50,16 +53,13 @@ function ArticleCard({ article }) {
       <CardActions
         sx={{
           display: "flex",
-          justifyContent: "space-around",
-          height: "25%",
-          m: 0,
-          p: "5px",
+          justifyContent: "end",
         }}
       >
         <Button variant="outlined" onClick={handleViewDetails}>
           Details
         </Button>
-        <Button  variant="contained" onClick={handleAddToCart}>
+        <Button variant="contained" onClick={handleAddToCart}>
           Add to cart
         </Button>
       </CardActions>

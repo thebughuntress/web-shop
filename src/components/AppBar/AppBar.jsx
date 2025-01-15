@@ -6,19 +6,11 @@ import {
   Typography,
   Button,
   IconButton,
-  TextField,
-  InputAdornment,
-  Chip,
 } from "@mui/material";
-
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import shopIcon from "../../assets/icons/icons8-shopee-100.png";
-import cartIcon from "../../assets/icons/icons8-shopping-cart-100.png";
-
 import { useNavigate } from "react-router-dom";
-//import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-
 import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
 import LanguageButton from "../LanguageButton/LanguageButton";
 import Search from "../Search/Search";
 
@@ -85,13 +77,7 @@ export default function AppBar() {
             <Button
               sx={{ fontSize: "18px" }}
               color="inherit"
-              startIcon={
-                <img
-                  src={cartIcon}
-                  alt="cart icon"
-                  style={{ width: 45, height: "auto" }}
-                />
-              }
+              startIcon={<ShoppingCartIcon />}
               onClick={() => navigate("/cart")}
             >
               Cart
