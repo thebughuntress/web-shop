@@ -22,7 +22,7 @@ function Home() {
         </Typography>
         <Typography
           variant="h5"
-          sx={{ fontWeight: 300, fontSize: { xs: "22px", md: "40px" } }}
+          sx={{ fontWeight: 300, mt: 1, fontSize: { xs: "14px", md: "40px" } }}
         >
           Shop Smart, Shop Better!
         </Typography>
