@@ -4,8 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getArticles } from "../../api";
 import ArticleCard from "../../components/ArticleCard/ArticleCard";
 import { setSearchText } from "../../store/articleSlice";
+import { useTranslation } from "react-i18next";
 
 function AllArticlesPage() {
+  const { t } = useTranslation();
   const [articles, setArticles] = useState([]);
   const [filteredArticles, setFilteredArticles] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -89,7 +91,7 @@ function AllArticlesPage() {
             color: "primary.main",
           }}
         >
-          Loading articles...
+          {t("loading-articles")}
         </Typography>
       </Box>
     );
@@ -99,7 +101,8 @@ function AllArticlesPage() {
     <Box
       sx={{
         marginY: 2,
-        marginX: { xs: 1, md: "340px" },
+        //backgroundColor: {xs: "red", lg: "green", xl: "yellow"},
+        marginX: { xs: 1, lg: "160px", xl: "340px" },
         display: "flex",
         flexWrap: "wrap",
         rowGap: 5,
@@ -124,10 +127,10 @@ function AllArticlesPage() {
             color="primary.light"
             sx={{ fontWeight: 500 }}
           >
-            No results for <b>{searchText}</b>
+            {t("no-results")} <b>{searchText}</b>
           </Typography>
           <Button sx={{ marginTop: 2 }} onClick={handleClearSearch}>
-            Reset Search settings
+            {t("reset-search")}
           </Button>
         </Box>
       )}

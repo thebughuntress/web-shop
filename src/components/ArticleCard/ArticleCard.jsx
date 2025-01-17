@@ -10,8 +10,10 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import cardImgPlaceholder from "../../assets/images/card-img-placeholder.png";
 import { addToCart } from "../../store/articleSlice";
+import { useTranslation } from "react-i18next";
 
 function ArticleCard({ article }) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -27,15 +29,15 @@ function ArticleCard({ article }) {
   return (
     <Card
       sx={{
-        width: { xs: "100%", md: "20%" },
+        width: { xs: "100%", md: "22%" },
         height: "320px",
         cursor: "pointer",
         boxShadow: 0,
         p: 1,
         m: 1,
         display: "flex",
-        flexDirection: "column", // Ensures content stacks vertically
-        justifyContent: "space-between", // Space between content and actions
+        flexDirection: "column",
+        justifyContent: "space-between",
       }}
     >
       <CardMedia
@@ -62,15 +64,10 @@ function ArticleCard({ article }) {
         }}
       >
         <Button variant="outlined" size="small" onClick={handleViewDetails}>
-          Details
+          {t("details")}
         </Button>
-        <Button
-          variant="contained"
-          size="small"
-          onClick={handleAddToCart}
-          // startIcon={<AddIcon />}
-        >
-          Add to cart
+        <Button variant="contained" size="small" onClick={handleAddToCart}>
+          {t("add-to-cart")}
         </Button>
       </CardActions>
     </Card>

@@ -23,8 +23,10 @@ import {
   reduceQuantityOfArticleInCart,
   removeArticleFromCart,
 } from "../../store/articleSlice";
+import { useTranslation } from "react-i18next";
 
 const CartPage = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -32,20 +34,20 @@ const CartPage = () => {
   const [grandTotal, setGrandTotal] = useState();
   const dispatch = useDispatch();
 
-    const [articlesData, setArticlesData] = useState([]);
-  
-    useEffect(() => {
-      const fetchArticles = async () => {
-        try {
-          const data = await getArticles();
-          setArticlesData(data);
-        } catch (error) {
-          console.error("Error fetching articles:", error);
-        }
-      };
-  
-      fetchArticles();
-    }, []);
+  const [articlesData, setArticlesData] = useState([]);
+
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        const data = await getArticles();
+        setArticlesData(data);
+      } catch (error) {
+        console.error("Error fetching articles:", error);
+      }
+    };
+
+    fetchArticles();
+  }, []);
 
   const cartItems = useSelector((state) => state.articles.cart);
 
@@ -98,7 +100,6 @@ const CartPage = () => {
     // Calculate the grand total
     if (articles.length > 0) {
       const total = articles.reduce((acc, item) => acc + item.total, 0);
-
       setGrandTotal(total);
     }
   }, [articles]);
@@ -106,6 +107,7 @@ const CartPage = () => {
   return (
     <Box
       sx={{
+        mt: 2,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -127,10 +129,10 @@ const CartPage = () => {
               fontWeight: "bold",
             }}
           >
-            Oops! Your cart is empty!
+            {t("cart-empty")}
           </Typography>
           <Button sx={{ marginTop: 2 }} onClick={() => navigate("/articles")}>
-            Show Articles
+            {t("show-articles")}
           </Button>
         </>
       )}
@@ -177,7 +179,7 @@ const CartPage = () => {
                             color: "text.secondary",
                           }}
                         >
-                          Price: {item.article.price} €
+                          {t("price")}: {item.article.price} €
                         </Typography>
                         {/* Quantity and Delete */}
                         <Box
@@ -192,6 +194,7 @@ const CartPage = () => {
                               handleDecreaseQuantity(item.article.id)
                             }
                             disabled={item.quantity <= 1}
+                            title={t("decrease-quantity")}
                           >
                             <Remove />
                           </IconButton>
@@ -207,6 +210,7 @@ const CartPage = () => {
                             onClick={() =>
                               handleIncreaseQuantity(item.article.id)
                             }
+                            title={t("increase-quantity")}
                           >
                             <Add />
                           </IconButton>
@@ -230,7 +234,7 @@ const CartPage = () => {
                 >
                   <TableCell colSpan={2} align="right">
                     <Typography fontWeight="bold" sx={{ mt: 2 }}>
-                      Grand Total: {grandTotal?.toFixed(2)} €
+                      {t("grand-total")}: {grandTotal?.toFixed(2)} €
                     </Typography>
                   </TableCell>
                 </TableRow>
@@ -254,22 +258,22 @@ const CartPage = () => {
                 <TableRow>
                   <TableCell>
                     <Typography variant="subtitle1" fontWeight="bold">
-                      Article
+                      {t("article")}
                     </Typography>
                   </TableCell>
                   <TableCell align="center">
                     <Typography variant="subtitle1" fontWeight="bold">
-                      Price
+                      {t("price")}
                     </Typography>
                   </TableCell>
                   <TableCell align="center">
                     <Typography variant="subtitle1" fontWeight="bold">
-                      Quantity
+                      {t("quantity")}
                     </Typography>
                   </TableCell>
                   <TableCell align="right" sx={{ width: "150px" }}>
                     <Typography variant="subtitle1" fontWeight="bold">
-                      Total
+                      {t("total")}
                     </Typography>
                   </TableCell>
                 </TableRow>
@@ -287,6 +291,7 @@ const CartPage = () => {
                           onClick={() =>
                             handleDeleteArticleFromCart(item.article.id)
                           }
+                          title={t("delete-article")}
                         >
                           <HighlightOffIcon />
                         </IconButton>
@@ -306,6 +311,7 @@ const CartPage = () => {
                             handleDecreaseQuantity(item.article.id)
                           }
                           disabled={item.quantity <= 1}
+                          title={t("decrease-quantity")}
                         >
                           <Remove />
                         </IconButton>
@@ -316,6 +322,7 @@ const CartPage = () => {
                           onClick={() =>
                             handleIncreaseQuantity(item.article.id)
                           }
+                          title={t("increase-quantity")}
                         >
                           <Add />
                         </IconButton>
@@ -333,7 +340,7 @@ const CartPage = () => {
                   }}
                 >
                   <TableCell colSpan={3} align="right">
-                    <Typography fontWeight="bold">Grand Total:</Typography>
+                    <Typography fontWeight="bold">{t("grand-total")}:</Typography>
                   </TableCell>
                   <TableCell align="right">
                     <Typography fontWeight="bold">

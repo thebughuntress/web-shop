@@ -1,46 +1,49 @@
-import "./App.css";
+import { Box, CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
-import { CssBaseline } from "@mui/material";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home/Home";
-import CartPage from "./pages/CartPage/CartPage";
-import AllArticlesPage from "./pages/AllArticlesPage/AllArticlesPage";
-import ArticleDetailPage from "./pages/ArticleDetailPage/ArticleDetailPage";
-import theme from "./theme/theme";
+import { I18nextProvider } from "react-i18next";
+import { Provider } from "react-redux";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import "./App.css";
 import AppBar from "./components/AppBar/AppBar";
 import Footer from "./components/Footer/Footer";
-import { Box } from "@mui/material";
-import { Provider } from "react-redux";
+import AllArticlesPage from "./pages/AllArticlesPage/AllArticlesPage";
+import ArticleDetailPage from "./pages/ArticleDetailPage/ArticleDetailPage";
+import CartPage from "./pages/CartPage/CartPage";
+import Home from "./pages/Home/Home";
 import store from "./store/store";
+import theme from "./theme/theme";
+import i18n from './i18n/i18n';
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <Provider store={store}>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            minHeight: "100vh",
-          }}
-        >
-          <CssBaseline />
-          <Router basename="/web-shop">
-            <AppBar />
-            <Box sx={{ flexGrow: 1 }}>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/cart" element={<CartPage />} />
-                <Route path="/articles" element={<AllArticlesPage />} />
-                <Route
-                  path="/article/:articleId"
-                  element={<ArticleDetailPage />}
-                />
-              </Routes>
-            </Box>
-            <Footer />
-          </Router>
-        </Box>
+        <I18nextProvider i18n={i18n}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              minHeight: "100vh",
+            }}
+          >
+            <CssBaseline />
+            <Router basename="/web-shop">
+              <AppBar />
+              <Box sx={{ flexGrow: 1 }}>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/cart" element={<CartPage />} />
+                  <Route path="/articles" element={<AllArticlesPage />} />
+                  <Route
+                    path="/article/:articleId"
+                    element={<ArticleDetailPage />}
+                  />
+                </Routes>
+              </Box>
+              <Footer />
+            </Router>
+          </Box>
+        </I18nextProvider>
       </Provider>
     </ThemeProvider>
   );

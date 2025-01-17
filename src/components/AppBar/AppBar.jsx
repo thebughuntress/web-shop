@@ -14,10 +14,13 @@ import MenuIcon from "@mui/icons-material/Menu";
 import LanguageButton from "../LanguageButton/LanguageButton";
 import ArticleSearch from "../ArticleSearch/ArticleSearch";
 import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
+
 
 import { setCategory } from "../../store/categorySlice";
 
 export default function AppBar() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -28,7 +31,7 @@ export default function AppBar() {
   );
 
   const categories = [
-    "All Articles",
+   `${t('all-articles')}`,
     "Programming",
     "Productivity",
     "Web Development",
@@ -124,7 +127,7 @@ export default function AppBar() {
               startIcon={<ShoppingCartIcon />}
               onClick={() => navigate("/cart")}
             >
-              Cart
+              {t('cart')}
             </Button>
           </Box>
         </Toolbar>

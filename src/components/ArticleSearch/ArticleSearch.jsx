@@ -4,8 +4,10 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchText } from "../../store/articleSlice";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Search = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -45,7 +47,7 @@ const Search = () => {
         paddingBottom: 0,
         lineHeight: "50px",
       }}
-      placeholder="Search..."
+      placeholder={t("search") + "..."}
     />
   );
 };

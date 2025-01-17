@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import { Box, Button, Menu, MenuItem, Typography } from "@mui/material";
 import LanguageIcon from "@mui/icons-material/Language";
+import { useTranslation } from "react-i18next";
 
 const LANGUAGES = [
-  { code: "EN", name: "English" },
-  { code: "ES", name: "Español" },
-  { code: "FR", name: "Français" },
-  { code: "DE", name: "Deutsch" },
+  { code: "en", name: "English" }, 
+  { code: "fr", name: "Français" },
+  { code: "de", name: "Deutsch" },
 ];
 
 const LanguageButton = () => {
+  const { i18n } = useTranslation(); 
   const [anchorEl, setAnchorEl] = useState(null);
-  const [currentLanguage, setCurrentLanguage] = useState("EN");
+  const [currentLanguage, setCurrentLanguage] = useState(i18n.language); // Set initial language from i18n
 
   const open = Boolean(anchorEl);
 
@@ -24,8 +25,9 @@ const LanguageButton = () => {
   };
 
   const handleLanguageChange = (languageCode) => {
-    setCurrentLanguage(languageCode);
-    handleClose();
+    i18n.changeLanguage(languageCode); // Change language using i18next
+    setCurrentLanguage(languageCode); // Update the current language in state
+    handleClose(); // Close the menu after selection
   };
 
   return (
@@ -38,7 +40,7 @@ const LanguageButton = () => {
           fontSize: "18px",
         }}
       >
-        {currentLanguage}
+        {LANGUAGES.find((lang) => lang.code === currentLanguage)?.name}
       </Button>
       <Menu
         anchorEl={anchorEl}
@@ -53,7 +55,7 @@ const LanguageButton = () => {
             key={language.code}
             onClick={() => handleLanguageChange(language.code)}
           >
-            <Typography>{language.code}</Typography>
+            <Typography>{language.name}</Typography>
           </MenuItem>
         ))}
       </Menu>

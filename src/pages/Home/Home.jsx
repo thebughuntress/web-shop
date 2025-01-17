@@ -2,8 +2,10 @@ import { Box, Button, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { getArticles } from "../../api";
 import ArticleCard from "../../components/ArticleCard/ArticleCard";
+import { useTranslation } from "react-i18next";
 
 function Home() {
+  const { t, i18n } = useTranslation();
   const [numberOfArticles, setNumberOfArticles] = useState(4);
   const [articles, setArticles] = useState([]);
 
@@ -46,7 +48,7 @@ function Home() {
             variant="h3"
             sx={{ fontSize: { xs: "28px", md: "50px" } }}
           >
-            Welcome to <b>webshop.com</b>
+            {t("welcome")}
           </Typography>
           <Typography
             variant="h5"
@@ -56,7 +58,7 @@ function Home() {
               fontSize: { xs: "14px", md: "28px" },
             }}
           >
-            Shop Smart, Shop Better!
+            {t("slogan")}
           </Typography>
         </Box>
 
@@ -65,7 +67,7 @@ function Home() {
         <Box
           sx={{
             marginY: 2,
-            marginX: { xs: 5, md: "340px" },
+            marginX: { xs: 1, lg: "160px", xl: "340px" },
             display: "flex",
             flexWrap: "wrap",
             rowGap: 5,
@@ -88,7 +90,9 @@ function Home() {
           }}
         >
           <Button onClick={handleShowMore} disabled={allArticlesVisible}>
-            {allArticlesVisible ? "All Articles Shown" : "Show More Articles"}
+            {allArticlesVisible
+              ? t("all-articles-shown")
+              : t("show-more-articles")}
           </Button>
         </Box>
       </Box>

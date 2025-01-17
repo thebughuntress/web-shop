@@ -18,8 +18,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import cardImgPlaceholder from "../../assets/images/card-img-placeholder.png";
 import { addToCart } from "../../store/articleSlice";
 import { getArticleById } from "../../api";
+import { useTranslation } from "react-i18next";
 
 function ArticleDetailPage() {
+  const { t } = useTranslation();
   const [quantity, setQuantity] = useState(1);
   const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -38,14 +40,14 @@ function ArticleDetailPage() {
         setArticle(el);
       } catch (error) {
         console.error(`Error fetching article with id ${articleId}:`, error);
-        setError("Failed to load article. Please try again later.");
+        setError(t("failed-to-load-article"));
       } finally {
         setLoading(false); // End loading
       }
     };
 
     fetchArticle();
-  }, [articleId]);
+  }, [articleId, t]);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -66,88 +68,44 @@ function ArticleDetailPage() {
           {error}
         </Typography>
       ) : article ? (
-        <Card
-          sx={{
-            maxWidth: 800,
-            margin: "auto",
-            display: "flex",
-            flexDirection: { xs: "column", md: "row" },
-            boxShadow: 3,
-          }}
-        >
+        <Card sx={{ maxWidth: 800, margin: "auto", display: "flex", flexDirection: { xs: "column", md: "row" }, boxShadow: 3 }}>
           {/* Left side for image */}
           <CardMedia
             component="img"
-            sx={{
-              width: { xs: "100%", md: "40%" },
-              objectFit: "cover",
-              height: { xs: 200, md: "auto" },
-            }}
+            sx={{ width: { xs: "100%", md: "40%" }, objectFit: "cover", height: { xs: 200, md: "auto" } }}
             image={article.imageUrl || cardImgPlaceholder}
             alt={article.name}
           />
 
           {/* Right side for content */}
-          <Box
-            sx={{
-              padding: 2,
-              display: "flex",
-              flexDirection: "column",
-              width: { xs: "100%", md: "60%" },
-            }}
-          >
+          <Box sx={{ padding: 2, display: "flex", flexDirection: "column", width: { xs: "100%", md: "60%" } }}>
             <CardContent sx={{ flexGrow: 1 }}>
-              <Typography
-                variant="h4"
-                sx={{
-                  fontWeight: "bold",
-                  mb: 2,
-                  color: "primary.dark",
-                  fontSize: { xs: "24px", md: "32px" },
-                }}
-              >
+              <Typography variant="h4" sx={{ fontWeight: "bold", mb: 2, color: "primary.dark", fontSize: { xs: "24px", md: "32px" } }}>
                 {article.name}
               </Typography>
               <Typography variant="body1" sx={{ mb: 1 }}>
                 {article.description}
               </Typography>
               <Typography variant="h6" sx={{ mb: 1, color: "green" }}>
-                Price: {article.price} €
+                {t("price")}: {article.price} €
               </Typography>
               <Typography variant="body2" sx={{ mb: 1 }}>
-                Category: {article.category}
+                {t("category")}: {article.category}
               </Typography>
-              <Typography
-                variant="body2"
-                sx={{ mb: 1, color: "primary.light" }}
-              >
-                Stock: {article.stock} available
+              <Typography variant="body2" sx={{ mb: 1, color: "primary.light" }}>
+                {t("stock")}: {article.stock} {t("available")}
               </Typography>
             </CardContent>
 
-            <CardActions
-              sx={{
-                display: "flex",
-                justifyContent: "flex-end",
-                flexDirection: { xs: "column", md: "row" },
-                gap: 2,
-              }}
-            >
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 1,
-                  width: "100%",
-                }}
-              >
+            <CardActions sx={{ display: "flex", justifyContent: "flex-end", flexDirection: { xs: "column", md: "row" }, gap: 2 }}>
+              <Box sx={{ display: "flex", flexDirection: "column", gap: 1, width: "100%" }}>
                 <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">Quantity</InputLabel>
+                  <InputLabel id="demo-simple-select-label">{t("quantity")}</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     value={quantity}
-                    label="Quantity"
+                    label={t("quantity")}
                     onChange={(event) => setQuantity(event.target.value)}
                   >
                     <MenuItem value={1}>1</MenuItem>
@@ -158,13 +116,8 @@ function ArticleDetailPage() {
                     <MenuItem value={10}>10</MenuItem>
                   </Select>
                 </FormControl>
-                <Button
-                  size="large"
-                  variant="contained"
-                  color="primary"
-                  onClick={handleAddToCart}
-                >
-                  Add to Cart
+                <Button size="large" variant="contained" color="primary" onClick={handleAddToCart}>
+                  {t("add-to-cart")}
                 </Button>
               </Box>
             </CardActions>
@@ -172,14 +125,12 @@ function ArticleDetailPage() {
         </Card>
       ) : (
         <Typography variant="h6" color="error" textAlign="center">
-          Article not found!
+          {t("article-not-found")}
         </Typography>
       )}
-      <Box
-        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
-      >
+      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
         <Button sx={{ marginTop: 4 }} onClick={() => navigate("/articles")}>
-          Back to all Articles
+          {t("back-to-all-articles")}
         </Button>
       </Box>
     </Box>
