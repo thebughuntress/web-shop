@@ -16,6 +16,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import cardImgPlaceholder from "../../assets/images/card-img-placeholder.png";
 import { addToCart } from "../../store/articleSlice";
+import { getArticles } from "../../api";
 
 function ArticleDetailPage() {
   const [quantity, setQuantity] = useState(1);
