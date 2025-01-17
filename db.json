@@ -1,0 +1,184 @@
+{
+  "articles": [
+    {
+      "id": 1,
+      "name": "Python Starter Pack",
+      "description": "A beginner-friendly kit to get started with Python programming.",
+      "price": 49.99,
+      "category": "Programming",
+      "stock": 100,
+      "imageUrl": "https://cdn.midjourney.com/282de57c-ef36-4801-aa23-606a1efd0df1/0_2.png"
+    },
+    {
+      "id": 2,
+      "name": "Java Proficient",
+      "description": "Advanced resources for mastering Java programming.",
+      "price": 79.99,
+      "category": "Programming",
+      "stock": 50,
+      "imageUrl": "https://cdn.midjourney.com/282de57c-ef36-4801-aa23-606a1efd0df1/0_3.png"
+    },
+    {
+      "id": 3,
+      "name": "Excel Mastery",
+      "description": "Comprehensive guide to becoming an Excel expert.",
+      "price": 29.99,
+      "category": "Productivity",
+      "stock": 200,
+      "imageUrl": "https://cdn.midjourney.com/282de57c-ef36-4801-aa23-606a1efd0df1/0_1.png"
+    },
+    {
+      "id": 4,
+      "name": "PHP Basics Bundle",
+      "description": "Essential tools and tutorials for PHP beginners.",
+      "price": 39.99,
+      "category": "Web Development",
+      "stock": 75,
+      "imageUrl": ""
+    },
+    {
+      "id": 5,
+      "name": "JavaScript Essentials",
+      "description": "A must-have toolkit for JavaScript learners.",
+      "price": 59.99,
+      "category": "Web Development",
+      "stock": 120,
+      "imageUrl": ""
+    },
+    {
+      "id": 6,
+      "name": "HTML and CSS Crash Course",
+      "description": "Quick and easy guide to building web pages with HTML and CSS.",
+      "price": 34.99,
+      "category": "Web Development",
+      "stock": 150,
+      "imageUrl": ""
+    },
+    {
+      "id": 7,
+      "name": "C++ Fundamentals",
+      "description": "Learn the basics of C++ programming with this complete package.",
+      "price": 45.99,
+      "category": "Programming",
+      "stock": 80,
+      "imageUrl": ""
+    },
+    {
+      "id": 8,
+      "name": "ReactJS Essentials",
+      "description": "Master the fundamentals of ReactJS for building modern web apps.",
+      "price": 49.99,
+      "category": "Web Development",
+      "stock": 100,
+      "imageUrl": ""
+    },
+    {
+      "id": 9,
+      "name": "Node.js Express Guide",
+      "description": "A complete guide to server-side development with Node.js and Express.",
+      "price": 59.99,
+      "category": "Web Development",
+      "stock": 95,
+      "imageUrl": ""
+    },
+    {
+      "id": 10,
+      "name": "SQL Mastery",
+      "description": "Learn everything you need to know about SQL for managing databases.",
+      "price": 39.99,
+      "category": "Database",
+      "stock": 110,
+      "imageUrl": ""
+    },
+    {
+      "id": 11,
+      "name": "Swift for Beginners",
+      "description": "An introductory course to Apple's Swift programming language.",
+      "price": 59.99,
+      "category": "Programming",
+      "stock": 80,
+      "imageUrl": ""
+    },
+    {
+      "id": 12,
+      "name": "Ruby on Rails Quickstart",
+      "description": "Get up to speed with Ruby on Rails for web application development.",
+      "price": 49.99,
+      "category": "Web Development",
+      "stock": 60,
+      "imageUrl": ""
+    },
+    {
+      "id": 13,
+      "name": "Introduction to Data Science",
+      "description": "Learn data science basics with Python and R.",
+      "price": 69.99,
+      "category": "Data Science",
+      "stock": 70,
+      "imageUrl": ""
+    },
+    {
+      "id": 14,
+      "name": "Machine Learning Fundamentals",
+      "description": "Start your journey into machine learning with Python.",
+      "price": 79.99,
+      "category": "Data Science",
+      "stock": 50,
+      "imageUrl": ""
+    },
+    {
+      "id": 15,
+      "name": "Angular Full Stack Development",
+      "description": "Learn how to develop full-stack applications using Angular.",
+      "price": 69.99,
+      "category": "Web Development",
+      "stock": 90,
+      "imageUrl": ""
+    },
+    {
+      "id": 16,
+      "name": "Kotlin for Android Development",
+      "description": "A deep dive into Kotlin for developing Android apps.",
+      "price": 59.99,
+      "category": "Mobile Development",
+      "stock": 120,
+      "imageUrl": ""
+    },
+    {
+      "id": 17,
+      "name": "Git and GitHub Mastery",
+      "description": "Master version control with Git and GitHub.",
+      "price": 29.99,
+      "category": "Productivity",
+      "stock": 150,
+      "imageUrl": ""
+    },
+    {
+      "id": 18,
+      "name": "Vue.js Quickstart",
+      "description": "Learn the basics of Vue.js for building reactive UIs.",
+      "price": 39.99,
+      "category": "Web Development",
+      "stock": 110,
+      "imageUrl": ""
+    },
+    {
+      "id": 19,
+      "name": "Web Development Bootcamp",
+      "description": "Learn web development from scratch, including HTML, CSS, and JavaScript.",
+      "price": 99.99,
+      "category": "Web Development",
+      "stock": 150,
+      "imageUrl": ""
+    },
+    {
+      "id": 20,
+      "name": "Blockchain for Beginners",
+      "description": "An introduction to blockchain technology and its applications.",
+      "price": 79.99,
+      "category": "Blockchain",
+      "stock": 60,
+      "imageUrl": ""
+    }
+  ]
+}
