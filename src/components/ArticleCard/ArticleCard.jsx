@@ -28,11 +28,12 @@ function ArticleCard({ article }) {
   return (
     <Card
       sx={{
-        width: { xs: "100%", md: "22%" },
+        width: { xs: "80%", md: "22%" },
         height: "310px",
         cursor: "pointer",
         boxShadow: 0,
         p: 1,
+        m: 1,
         display: "flex",
         flexDirection: "column", // Ensures content stacks vertically
         justifyContent: "space-between", // Space between content and actions

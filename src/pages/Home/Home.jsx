@@ -32,14 +32,13 @@ function Home() {
           justifyContent: "center",
         }}
       >
-        <Box sx={{ width: "80%", mt: 2 }}>
+        <Box sx={{ width: "75%", mt: 2 }}>
           <Typography
             variant="h5"
             sx={{
               fontWeight: 800,
               color: "primary.light",
               textAlign: "left",
-              marginBottom: 2,
             }}
           >
             Top Picks
@@ -48,12 +47,12 @@ function Home() {
 
         <Box
           sx={{
+            margin: 2,
             display: "flex",
             flexWrap: "wrap",
-            justifyContent: { xs: "center", sm: "space-between" },
-            flexDirection: { xs: "column", sm: "row" },
-            alignItems: "center",
-            gap: 3,
+            rowGap: 2,
+            columnGap: 1,
+            justifyContent: "space-around",
           }}
         >
           {articlesData.articles.slice(0, 4).map((article) => (

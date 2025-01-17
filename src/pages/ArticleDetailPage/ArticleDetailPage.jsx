@@ -36,13 +36,25 @@ function ArticleDetailPage() {
   );
 
   return (
-    <Box sx={{ paddingTop: 4 }}>
+    <Box sx={{ paddingTop: 4, m: 2 }}>
       {article ? (
-        <Card sx={{ maxWidth: 800, margin: "auto", display: "flex" }}>
+        <Card
+          sx={{
+            maxWidth: 800,
+            margin: "auto",
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" }, // Stack on mobile, row for md
+            boxShadow: 3, // Optional: Adds a shadow for better visual separation
+          }}
+        >
           {/* Left side for image */}
           <CardMedia
             component="img"
-            sx={{ width: "40%", objectFit: "cover" }}
+            sx={{
+              width: { xs: "100%", md: "40%" }, // Full width on mobile, 40% on medium screens
+              objectFit: "cover",
+              height: { xs: 200, md: "auto" }, // Fix height for mobile if needed
+            }}
             image={article.imageUrl || cardImgPlaceholder}
             alt={article.name}
           />
@@ -53,13 +65,18 @@ function ArticleDetailPage() {
               padding: 2,
               display: "flex",
               flexDirection: "column",
-              width: "60%",
+              width: { xs: "100%", md: "60%" }, // Full width on mobile, 60% on medium screens
             }}
           >
             <CardContent sx={{ flexGrow: 1 }}>
               <Typography
                 variant="h4"
-                sx={{ fontWeight: "bold", mb: 2, color: "primary.dark" }}
+                sx={{
+                  fontWeight: "bold",
+                  mb: 2,
+                  color: "primary.dark",
+                  fontSize: { xs: "24px", md: "32px" },
+                }}
               >
                 {article.name}
               </Typography>
@@ -84,6 +101,8 @@ function ArticleDetailPage() {
               sx={{
                 display: "flex",
                 justifyContent: "flex-end",
+                flexDirection: { xs: "column", md: "row" }, // Column layout for actions on mobile
+                gap: 2, // Adds spacing between elements
               }}
             >
               <Box
@@ -91,6 +110,7 @@ function ArticleDetailPage() {
                   display: "flex",
                   flexDirection: "column",
                   gap: 1,
+                  width: "100%", // Ensures proper alignment for mobile
                 }}
               >
                 <FormControl fullWidth>
