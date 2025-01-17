@@ -17,10 +17,13 @@ function Home() {
           boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
         }}
       >
-        <Typography variant="h3" sx={{ fontSize: { xs: "40px", md: "50px" } }}>
+        <Typography variant="h3" sx={{ fontSize: { xs: "28px", md: "50px" } }}>
           Welcome to <b>webshop.com</b>
         </Typography>
-        <Typography variant="h5" sx={{ fontWeight: 300 }}>
+        <Typography
+          variant="h5"
+          sx={{ fontWeight: 300, fontSize: { xs: "22px", md: "40px" } }}
+        >
           Shop Smart, Shop Better!
         </Typography>
       </Box>

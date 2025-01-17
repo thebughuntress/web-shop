@@ -86,10 +86,9 @@ export default function AppBar() {
               <Typography
                 variant="h5"
                 sx={{
-                  marginLeft: 2,
+                  marginLeft: 1,
                   fontWeight: 600,
-                  marginTop: 1,
-                  fontSize: { xs: "18px", md: "24px" },
+                  fontSize: { xs: "20px", md: "24px" },
                 }}
               >
                 webshop.com
