@@ -1,10 +1,20 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
+import React, { useState } from "react";
 import ArticleCard from "../../components/ArticleCard/ArticleCard";
 import articlesData from "../../db/articles.json";
 
 function Home() {
+  const [numberOfArticles, setNumberOfArticles] = useState(4);
+
+  const handleShowMore = () => {
+    setNumberOfArticles((prev) => prev + 4);
+  };
+
+  const allArticlesVisible = numberOfArticles >= articlesData.articles.length; // Check if all articles are visible
+
   return (
     <Box>
+      {/* Header Section */}
       <Box
         sx={{
           background: "linear-gradient(to right, lightyellow, white)",
@@ -22,46 +32,42 @@ function Home() {
         </Typography>
         <Typography
           variant="h5"
-          sx={{ fontWeight: 300, mt: 1, fontSize: { xs: "14px", md: "40px" } }}
+          sx={{ fontWeight: 300, mt: 1, fontSize: { xs: "14px", md: "28px" } }}
         >
           Shop Smart, Shop Better!
         </Typography>
       </Box>
+
+      {/* Articles Section */}
+
+      <Box
+        sx={{
+          marginY: 2,
+          marginX: { xs: 5, md: "340px" },
+          display: "flex",
+          flexWrap: "wrap",
+          rowGap: 5,
+          columnGap: 1,
+          justifyContent: "space-between",
+          paddingTop: 5,
+        }}
+      >
+        {articlesData.articles.slice(0, numberOfArticles).map((article) => (
+          <ArticleCard key={article.id} article={article} />
+        ))}
+      </Box>
+
+      {/* Show More Button */}
       <Box
         sx={{
           display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
+          justifyContent: "center", 
+          mt: 5, 
         }}
       >
-        <Box sx={{ width: "75%", mt: 2 }}>
-          <Typography
-            variant="h5"
-            sx={{
-              fontWeight: 800,
-              color: "primary.light",
-              textAlign: "left",
-            }}
-          >
-            Top Picks
-          </Typography>
-        </Box>
-
-        <Box
-          sx={{
-            margin: 2,
-            display: "flex",
-            flexWrap: "wrap",
-            rowGap: 2,
-            columnGap: 1,
-            justifyContent: "space-around",
-          }}
-        >
-          {articlesData.articles.slice(0, 4).map((article) => (
-            <ArticleCard key={article.id} article={article} />
-          ))}
-        </Box>
+        <Button onClick={handleShowMore} disabled={allArticlesVisible}>
+          {allArticlesVisible ? "All Articles Shown" : "Show More Articles"}
+        </Button>
       </Box>
     </Box>
   );

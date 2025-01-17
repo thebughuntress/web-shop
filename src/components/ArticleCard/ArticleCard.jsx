@@ -28,8 +28,8 @@ function ArticleCard({ article }) {
   return (
     <Card
       sx={{
-        width: { xs: "80%", md: "22%" },
-        height: "310px",
+        width: { xs: "100%", md: "20%" },
+        height: "320px",
         cursor: "pointer",
         boxShadow: 0,
         p: 1,
@@ -45,8 +45,11 @@ function ArticleCard({ article }) {
         image={article.imageUrl || cardImgPlaceholder}
         alt={article.name}
       />
-      <CardContent sx={{ textAlign: "center" }}>
-        <Typography variant="h5" sx={{ fontWeight: "bold", paddingTop: 0 }}>
+      <CardContent sx={{ textAlign: "center", m: 0, p: 0 }}>
+        <Typography
+          variant="h5"
+          sx={{ fontWeight: "bold", paddingTop: 0, m: 0 }}
+        >
           {article.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">

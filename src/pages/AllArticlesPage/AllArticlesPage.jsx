@@ -52,12 +52,13 @@ function AllArticlesPage() {
   return (
     <Box
       sx={{
-        margin: 2,
+        marginY: 2,
+        marginX: {xs: 1, md: "340px"},
         display: "flex",
         flexWrap: "wrap",
         rowGap: 5,
         columnGap: 1,
-        justifyContent: "space-around",
+        justifyContent: "space-between",
         paddingTop: 5,
       }}
     >
