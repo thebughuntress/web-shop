@@ -5,6 +5,7 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  CircularProgress,
   FormControl,
   InputLabel,
   MenuItem,
@@ -20,7 +21,9 @@ import { getArticleById } from "../../api";
 
 function ArticleDetailPage() {
   const [quantity, setQuantity] = useState(1);
-  const [article, setArticle] = useState([]);
+  const [article, setArticle] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null); // State to handle errors
 
   // Get the articleId from the URL
   const { articleId } = useParams();
@@ -28,11 +31,16 @@ function ArticleDetailPage() {
   useEffect(() => {
     const fetchArticle = async () => {
       if (!articleId) return;
+      setLoading(true); // Start loading
+      setError(null); // Reset error state
       try {
         const el = await getArticleById(articleId);
         setArticle(el);
       } catch (error) {
         console.error(`Error fetching article with id ${articleId}:`, error);
+        setError("Failed to load article. Please try again later.");
+      } finally {
+        setLoading(false); // End loading
       }
     };
 
@@ -49,23 +57,31 @@ function ArticleDetailPage() {
 
   return (
     <Box sx={{ paddingTop: 4, m: 2 }}>
-      {article ? (
+      {loading ? (
+        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "50vh" }}>
+          <CircularProgress />
+        </Box>
+      ) : error ? (
+        <Typography variant="h6" color="error" textAlign="center">
+          {error}
+        </Typography>
+      ) : article ? (
         <Card
           sx={{
             maxWidth: 800,
             margin: "auto",
             display: "flex",
-            flexDirection: { xs: "column", md: "row" }, // Stack on mobile, row for md
-            boxShadow: 3, // Optional: Adds a shadow for better visual separation
+            flexDirection: { xs: "column", md: "row" },
+            boxShadow: 3,
           }}
         >
           {/* Left side for image */}
           <CardMedia
             component="img"
             sx={{
-              width: { xs: "100%", md: "40%" }, // Full width on mobile, 40% on medium screens
+              width: { xs: "100%", md: "40%" },
               objectFit: "cover",
-              height: { xs: 200, md: "auto" }, // Fix height for mobile if needed
+              height: { xs: 200, md: "auto" },
             }}
             image={article.imageUrl || cardImgPlaceholder}
             alt={article.name}
@@ -77,7 +93,7 @@ function ArticleDetailPage() {
               padding: 2,
               display: "flex",
               flexDirection: "column",
-              width: { xs: "100%", md: "60%" }, // Full width on mobile, 60% on medium screens
+              width: { xs: "100%", md: "60%" },
             }}
           >
             <CardContent sx={{ flexGrow: 1 }}>
@@ -113,8 +129,8 @@ function ArticleDetailPage() {
               sx={{
                 display: "flex",
                 justifyContent: "flex-end",
-                flexDirection: { xs: "column", md: "row" }, // Column layout for actions on mobile
-                gap: 2, // Adds spacing between elements
+                flexDirection: { xs: "column", md: "row" },
+                gap: 2,
               }}
             >
               <Box
@@ -122,13 +138,11 @@ function ArticleDetailPage() {
                   display: "flex",
                   flexDirection: "column",
                   gap: 1,
-                  width: "100%", // Ensures proper alignment for mobile
+                  width: "100%",
                 }}
               >
                 <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">
-                    Quantity
-                  </InputLabel>
+                  <InputLabel id="demo-simple-select-label">Quantity</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
