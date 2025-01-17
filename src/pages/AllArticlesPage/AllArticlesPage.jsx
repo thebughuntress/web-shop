@@ -1,11 +1,36 @@
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Button, CircularProgress, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import articlesData from "../../db/articles.json";
-import ArticleCard from "../../components/ArticleCard/ArticleCard";
 import { useDispatch, useSelector } from "react-redux";
+import { getArticles } from "../../api";
+import ArticleCard from "../../components/ArticleCard/ArticleCard";
 import { setSearchText } from "../../store/articleSlice";
 
 function AllArticlesPage() {
+  const [articles, setArticles] = useState([]);
+  const [filteredArticles, setFilteredArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        setLoading(true);
+
+        // Introduce a fake delay
+        await new Promise((resolve) => setTimeout(resolve, 700));
+
+        const data = await getArticles();
+        setArticles(data);
+        setFilteredArticles(data);
+      } catch (error) {
+        console.error("Error fetching articles:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchArticles();
+  }, []);
+
   const dispatch = useDispatch();
   // Get searchText and category from Redux store
   const searchText = useSelector((state) => state.articles.searchText);
@@ -13,13 +38,9 @@ function AllArticlesPage() {
     (state) => state.category.selectedCategory
   );
 
-  const [filteredArticles, setFilteredArticles] = useState(
-    articlesData.articles
-  );
-
   // Effect to filter articles when search text or selected category changes
   useEffect(() => {
-    let filtered = articlesData.articles;
+    let filtered = articles;
 
     // Filter by selected category
     if (selectedCategory && selectedCategory !== "All Articles") {
@@ -42,18 +63,43 @@ function AllArticlesPage() {
 
     // Update filtered articles
     setFilteredArticles(filtered);
-  }, [selectedCategory, searchText]);
+  }, [articles, selectedCategory, searchText]);
 
   const handleClearSearch = () => {
     // Dispatch the action to clear the search text
     dispatch(setSearchText(""));
   };
 
+  if (loading) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        <CircularProgress />
+        <Typography
+          variant="h6"
+          sx={{
+            textAlign: "center",
+            marginY: 2,
+            color: "primary.main",
+          }}
+        >
+          Loading articles...
+        </Typography>
+      </Box>
+    );
+  }
+
   return (
     <Box
       sx={{
         marginY: 2,
-        marginX: {xs: 1, md: "340px"},
+        marginX: { xs: 1, md: "340px" },
         display: "flex",
         flexWrap: "wrap",
         rowGap: 5,

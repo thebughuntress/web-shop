@@ -1,28 +1,28 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import emptyCartIcon from "../../assets/icons/icons8-empty-100.png";
+import { Add, Remove } from "@mui/icons-material";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import {
   Box,
   Button,
-  Typography,
+  IconButton,
+  Paper,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  Paper,
-  IconButton,
+  Typography,
 } from "@mui/material";
-import { Add, Remove } from "@mui/icons-material";
-import articlesData from "../../db/articles.json";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getArticles } from "../../api";
+import emptyCartIcon from "../../assets/icons/icons8-empty-100.png";
 import {
   addToCart,
   reduceQuantityOfArticleInCart,
   removeArticleFromCart,
 } from "../../store/articleSlice";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 const CartPage = () => {
   const navigate = useNavigate();
@@ -31,6 +31,21 @@ const CartPage = () => {
   const [articles, setArticles] = useState([]);
   const [grandTotal, setGrandTotal] = useState();
   const dispatch = useDispatch();
+
+    const [articlesData, setArticlesData] = useState([]);
+  
+    useEffect(() => {
+      const fetchArticles = async () => {
+        try {
+          const data = await getArticles();
+          setArticlesData(data);
+        } catch (error) {
+          console.error("Error fetching articles:", error);
+        }
+      };
+  
+      fetchArticles();
+    }, []);
 
   const cartItems = useSelector((state) => state.articles.cart);
 
@@ -56,7 +71,7 @@ const CartPage = () => {
       // Map cartItems to include article details
       const elements = cartItems
         .map((cartItem) => {
-          const article = articlesData.articles.find(
+          const article = articlesData.find(
             (article) => article.id === cartItem.id
           );
           if (article) {

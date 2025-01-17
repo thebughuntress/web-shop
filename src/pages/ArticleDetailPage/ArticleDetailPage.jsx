@@ -1,23 +1,41 @@
-import React, { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
 import {
   Box,
   Button,
-  Typography,
   Card,
-  CardMedia,
-  CardContent,
   CardActions,
-  Grid,
+  CardContent,
+  CardMedia,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Typography
 } from "@mui/material";
-import articlesData from "../../db/articles.json";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../store/articleSlice";
+import { useNavigate, useParams } from "react-router-dom";
 import cardImgPlaceholder from "../../assets/images/card-img-placeholder.png";
-import { Select, MenuItem, InputLabel, FormControl } from "@mui/material";
+import { addToCart } from "../../store/articleSlice";
 
 function ArticleDetailPage() {
   const [quantity, setQuantity] = useState(1);
+
+  const [article, setArticle] = useState([]);
+
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        const articles = await getArticles();
+        // Find the article by ID
+        const el = articles.find((art) => art.id === parseInt(articleId));
+        setArticle(el);
+      } catch (error) {
+        console.error("Error fetching articles:", error);
+      }
+    };
+
+    fetchArticles();
+  }, []);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -29,11 +47,6 @@ function ArticleDetailPage() {
 
   // Get the articleId from the URL
   const { articleId } = useParams();
-
-  // Find the article by ID
-  const article = articlesData.articles.find(
-    (art) => art.id === parseInt(articleId)
-  );
 
   return (
     <Box sx={{ paddingTop: 4, m: 2 }}>

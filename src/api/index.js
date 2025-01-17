@@ -1,2 +1,1 @@
-export * from './shopApi';
-export * from './postApi';
+export * from './articlesApi';

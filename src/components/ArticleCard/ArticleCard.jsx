@@ -1,16 +1,15 @@
 import {
+  Button,
   Card,
+  CardActions,
   CardContent,
   CardMedia,
   Typography,
-  Button,
-  CardActions,
 } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../store/articleSlice";
+import { useNavigate } from "react-router-dom";
 import cardImgPlaceholder from "../../assets/images/card-img-placeholder.png";
+import { addToCart } from "../../store/articleSlice";
 
 function ArticleCard({ article }) {
   const navigate = useNavigate();
