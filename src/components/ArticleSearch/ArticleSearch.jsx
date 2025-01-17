@@ -39,7 +39,7 @@ const Search = () => {
       sx={{
         backgroundColor: "white",
         borderRadius: "4px",
-        width: "20vw",
+        width: "80%",
         height: "50px",
         paddingTop: 0,
         paddingBottom: 0,

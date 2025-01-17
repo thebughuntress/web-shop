@@ -6,11 +6,11 @@ import {
   Button,
   CardActions,
 } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../store/articleSlice";
-import cardImgPlaceholder from "../../assets/images/card-img-placeholder.png"
-
+import cardImgPlaceholder from "../../assets/images/card-img-placeholder.png";
 
 function ArticleCard({ article }) {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ function ArticleCard({ article }) {
   return (
     <Card
       sx={{
-        width: "22%",
+        width: { xs: "100%", md: "22%" },
         height: "310px",
         cursor: "pointer",
         boxShadow: 0,
@@ -49,7 +49,7 @@ function ArticleCard({ article }) {
           {article.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          ${article.price}
+          {article.price} €
         </Typography>
       </CardContent>
       <CardActions
@@ -58,10 +58,15 @@ function ArticleCard({ article }) {
           justifyContent: "end",
         }}
       >
-        <Button variant="outlined" onClick={handleViewDetails}>
+        <Button variant="outlined" size="small" onClick={handleViewDetails}>
           Details
         </Button>
-        <Button variant="contained" onClick={handleAddToCart}>
+        <Button
+          variant="contained"
+          size="small"
+          onClick={handleAddToCart}
+          // startIcon={<AddIcon />}
+        >
           Add to cart
         </Button>
       </CardActions>

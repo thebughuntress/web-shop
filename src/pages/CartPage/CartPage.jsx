@@ -102,7 +102,7 @@ const CartPage = () => {
           <img
             src={emptyCartIcon}
             alt="cart icon"
-            style={{ width: 100, height: "auto" }}
+            style={{ width: 70, height: "auto" }}
           />
           <Typography
             variant="h5"
@@ -133,6 +133,11 @@ const CartPage = () => {
           <Table>
             <TableHead>
               <TableRow>
+               {/*  <TableCell align="center">
+                  <Typography variant="subtitle1" fontWeight="bold">
+                    Image
+                  </Typography>
+                </TableCell> */}
                 <TableCell>
                   <Typography variant="subtitle1" fontWeight="bold">
                     Article
@@ -158,6 +163,14 @@ const CartPage = () => {
             <TableBody>
               {articles.map((item, index) => (
                 <TableRow key={index}>
+                  {/* <TableCell align="center">
+                    <img
+                      src={item.article.imageUrl}
+                      alt={item.article.name}
+                      style={{ width: 70, height: "auto", objectFit: "cover" }}
+                    />
+                  </TableCell> */}
+
                   <TableCell>
                     <Box sx={{ display: "flex", alignItems: "center" }}>
                       <Typography sx={{ fontWeight: "bold", mr: 1 }}>
@@ -223,6 +236,8 @@ const CartPage = () => {
           </Table>
         </TableContainer>
       )}
+
+      
     </Box>
   );
 };

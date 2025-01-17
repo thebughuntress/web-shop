@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
   Box,
@@ -14,13 +14,16 @@ import articlesData from "../../db/articles.json";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../store/articleSlice";
 import cardImgPlaceholder from "../../assets/images/card-img-placeholder.png";
+import { Select, MenuItem, InputLabel, FormControl } from "@mui/material";
 
 function ArticleDetailPage() {
+  const [quantity, setQuantity] = useState(1);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
-    dispatch(addToCart({ id: article.id, quantity: 1 }));
+    dispatch(addToCart({ id: article.id, quantity }));
     console.log("Added to cart: ", article.name);
   };
 
@@ -45,7 +48,14 @@ function ArticleDetailPage() {
           />
 
           {/* Right side for content */}
-          <Box sx={{ padding: 2, display: "flex", flexDirection: "column", width: "60%" }}>
+          <Box
+            sx={{
+              padding: 2,
+              display: "flex",
+              flexDirection: "column",
+              width: "60%",
+            }}
+          >
             <CardContent sx={{ flexGrow: 1 }}>
               <Typography
                 variant="h4"
@@ -62,20 +72,55 @@ function ArticleDetailPage() {
               <Typography variant="body2" sx={{ mb: 1 }}>
                 Category: {article.category}
               </Typography>
-              <Typography variant="body2" sx={{ mb: 1, color: "primary.light" }}>
+              <Typography
+                variant="body2"
+                sx={{ mb: 1, color: "primary.light" }}
+              >
                 Stock: {article.stock} available
               </Typography>
             </CardContent>
 
-            <CardActions sx={{ display: "flex", justifyContent: "end" }}>
-              <Button
-                size="large"
-                variant="contained"
-                color="primary"
-                onClick={handleAddToCart}
+            <CardActions
+              sx={{
+                display: "flex",
+                justifyContent: "flex-end",
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 1,
+                }}
               >
-                Add to Cart
-              </Button>
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">
+                    Quantity
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={quantity}
+                    label="Quantity"
+                    onChange={(event) => setQuantity(event.target.value)}
+                  >
+                    <MenuItem value={1}>1</MenuItem>
+                    <MenuItem value={2}>2</MenuItem>
+                    <MenuItem value={3}>3</MenuItem>
+                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={5}>5</MenuItem>
+                    <MenuItem value={10}>10</MenuItem>
+                  </Select>
+                </FormControl>
+                <Button
+                  size="large"
+                  variant="contained"
+                  color="primary"
+                  onClick={handleAddToCart}
+                >
+                  Add to Cart
+                </Button>
+              </Box>
             </CardActions>
           </Box>
         </Card>

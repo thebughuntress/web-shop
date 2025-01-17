@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import shopIcon from "../../assets/icons/icons8-shopee-100.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import LanguageButton from "../LanguageButton/LanguageButton";
 import ArticleSearch from "../ArticleSearch/ArticleSearch";
@@ -19,6 +19,7 @@ import { setCategory } from "../../store/categorySlice";
 
 export default function AppBar() {
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
 
   // Access the selected category from Redux
@@ -46,6 +47,14 @@ export default function AppBar() {
       navigate(`/articles#${category.toLowerCase().replace(/ /g, "-")}`);
     }
   };
+
+  // Effect to run when the route changes
+  React.useEffect(() => {
+    const path = location.pathname;
+    if (path !== "/articles") {
+      dispatch(setCategory(""));
+    }
+  }, [location, dispatch]);
 
   return (
     <Box sx={{ flexGrow: 1, textAlign: "start" }}>
@@ -82,14 +91,15 @@ export default function AppBar() {
               </Typography>
             </Box>
           </Box>
-
           <Box
             sx={{
-              display: "flex",
+              display: {
+                xs: "none",
+                md: "flex",
+              },
               justifyContent: "center",
               alignItems: "center",
               width: "33%",
-              //backgroundColor: "blue"
             }}
           >
             <ArticleSearch />
@@ -115,7 +125,14 @@ export default function AppBar() {
           </Box>
         </Toolbar>
 
-        <Toolbar sx={{ backgroundColor: "primary", height: "68px" }}>
+        <Toolbar
+          sx={{
+            backgroundColor: "primary",
+            height: "68px",
+            display: "flex",
+            justifyContent: { xs: "space-between", md: "start" },
+          }}
+        >
           <IconButton
             size="large"
             edge="start"
@@ -126,25 +143,46 @@ export default function AppBar() {
             <MenuIcon />
           </IconButton>
 
-          {categories.map((category) => (
-            <Button
-              key={category}
-              color="inherit"
-              onClick={() => handleCategoryClick(category)}
-              sx={{
-                height: "100%",
-                borderRadius:0,
-                borderBottom:
-                  selectedCategory === category
-                    ? "4px solid white" 
-                    : "none",
-                paddingBottom: "5px",
-                fontWeight: selectedCategory === category ? "bold" : "normal", // Optionally make selected category bold
-              }}
-            >
-              {category}
-            </Button>
-          ))}
+          <Box
+            sx={{
+              display: {
+                xs: "none",
+                md: "block",
+              },
+            }}
+          >
+            {categories.map((category) => (
+              <Button
+                key={category}
+                color="inherit"
+                onClick={() => handleCategoryClick(category)}
+                sx={{
+                  height: "100%",
+                  borderRadius: 0,
+                  borderBottom:
+                    selectedCategory === category ? "4px solid white" : "none",
+                  paddingBottom: "5px",
+                  fontWeight: selectedCategory === category ? "bold" : "normal", // Optionally make selected category bold
+                }}
+              >
+                {category}
+              </Button>
+            ))}
+          </Box>
+
+          <Box
+            sx={{
+              width: "80%",
+              display: {
+                xs: "block",
+                md: "none",
+              },
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <ArticleSearch />
+          </Box>
         </Toolbar>
       </MuiAppBar>
     </Box>
