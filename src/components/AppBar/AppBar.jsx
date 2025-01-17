@@ -85,7 +85,12 @@ export default function AppBar() {
               />
               <Typography
                 variant="h5"
-                sx={{ marginLeft: 2, fontWeight: 600, marginTop: 1 }}
+                sx={{
+                  marginLeft: 2,
+                  fontWeight: 600,
+                  marginTop: 1,
+                  fontSize: { xs: "18px", md: "24px" },
+                }}
               >
                 webshop.com
               </Typography>
@@ -158,7 +163,7 @@ export default function AppBar() {
                 color="inherit"
                 onClick={() => handleCategoryClick(category)}
                 sx={{
-                  height: "100%",
+                  height: "68px",
                   borderRadius: 0,
                   borderBottom:
                     selectedCategory === category ? "4px solid white" : "none",
