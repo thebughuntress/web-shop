@@ -32,7 +32,7 @@ function ArticleDetailPage() {
         const el = await getArticleById(articleId);
         setArticle(el);
       } catch (error) {
-        console.error("Error fetching articles:", error);
+        console.error(`Error fetching article with id ${articleId}:`, error);
       }
     };
 
