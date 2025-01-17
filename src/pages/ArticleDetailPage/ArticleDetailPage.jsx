@@ -9,34 +9,35 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  Typography
+  Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import cardImgPlaceholder from "../../assets/images/card-img-placeholder.png";
 import { addToCart } from "../../store/articleSlice";
-import { getArticles } from "../../api";
+import { getArticleById } from "../../api";
 
 function ArticleDetailPage() {
   const [quantity, setQuantity] = useState(1);
-
   const [article, setArticle] = useState([]);
 
+  // Get the articleId from the URL
+  const { articleId } = useParams();
+
   useEffect(() => {
-    const fetchArticles = async () => {
+    const fetchArticle = async () => {
+      if (!articleId) return;
       try {
-        const articles = await getArticles();
-        // Find the article by ID
-        const el = articles.find((art) => art.id === parseInt(articleId));
+        const el = await getArticleById(articleId);
         setArticle(el);
       } catch (error) {
         console.error("Error fetching articles:", error);
       }
     };
 
-    fetchArticles();
-  }, []);
+    fetchArticle();
+  }, [articleId]);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -45,9 +46,6 @@ function ArticleDetailPage() {
     dispatch(addToCart({ id: article.id, quantity }));
     console.log("Added to cart: ", article.name);
   };
-
-  // Get the articleId from the URL
-  const { articleId } = useParams();
 
   return (
     <Box sx={{ paddingTop: 4, m: 2 }}>
