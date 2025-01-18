@@ -98,21 +98,21 @@ function AllArticlesPage() {
 
   return (
     <Box
-      sx={{
-        //backgroundColor: { xs: "red", lg: "green", xl: "yellow" },
-        marginY: 2,
-        marginX: { xs: 1, lg: "160px", xl: "280px" },
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent:
-          filteredArticles.length <= 3 && filteredArticles.length > 0
-            ? "flex-start"
-            : "center",
-        alignItems: "center",
-        rowGap: 5,
-        columnGap: 1,
-        paddingTop: 5,
-      }}
+    sx={{
+      //backgroundColor: { xs: "red", lg: "green", xl: "yellow" },
+      marginY: 2,
+      marginX: { xs: 1, lg: "160px", xl: "280px" },
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: filteredArticles.length <= 3 && filteredArticles.length > 0
+        ? { xs: "center", md: "flex-start" } 
+        : "center",
+      alignItems: "center",
+      rowGap: 5,
+      columnGap: 1,
+      paddingTop: 5,
+    }}
+    
     >
       {filteredArticles.length > 0 ? (
         <>

@@ -113,7 +113,7 @@ const CartPage = () => {
         flexDirection: "column",
       }}
     >
-      {articles.length === 0 && (
+      {!loading && articles.length === 0 && !error && (
         <>
           <img
             src={emptyCartIcon}
@@ -295,7 +295,6 @@ const CartPage = () => {
                             onClick={() =>
                               handleDeleteArticleFromCart(item.article.id)
                             }
-                            title={t("delete-article")}
                           >
                             <HighlightOffIcon />
                           </IconButton>
