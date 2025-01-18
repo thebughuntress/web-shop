@@ -90,7 +90,7 @@ function ArticleDetailPage() {
                 {t("price")}: {article.price} €
               </Typography>
               <Typography variant="body2" sx={{ mb: 1 }}>
-                {t("category")}: {article.category}
+                {t("category")}: {article.category.label}
               </Typography>
               <Typography variant="body2" sx={{ mb: 1, color: "primary.light" }}>
                 {t("stock")}: {article.stock} {t("available")}
