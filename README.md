@@ -7,8 +7,10 @@ Check out the live version of the project hosted on GitHub Pages: [Web Shop](htt
 - **React.js**: A powerful JavaScript library for building user interfaces.
 - **Vite**: A fast and lightweight build tool for modern web development.
 - **Material-UI**: A popular React component library for elegant and responsive design.
-- **React Router**: A library for handling client-side routing with ease.
-- **Redux**: A predictable state management library for scalable applications.
+- **React Router**: Library for handling client-side routing with ease.
+- **Redux**: State management library for scalable applications.
+- **i18n**: Internationalization library for handling multi-language support.
+
 
 ## Mock API Server (Fake Backend)
 A mock JSON Server is up and running [here](https://my-json-server.typicode.com/thebughuntress/web-shop).
