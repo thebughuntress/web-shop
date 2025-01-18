@@ -121,18 +121,30 @@ export default function AppBar() {
             }}
           >
             <LanguageButton />
+
             <Button
-              sx={{ fontSize: "18px" }}
+              sx={{ fontSize: "18px", display: { xs: "none", md: "block" } }}
               color="inherit"
               startIcon={<ShoppingCartIcon />}
               onClick={() => navigate("/cart")}
             >
               {t("cart")}
             </Button>
+
+            <IconButton
+              sx={{
+                fontSize: "24px", 
+                color: "inherit",
+                display: { xs: "block", md: "none" } 
+              }}
+              onClick={() => navigate("/cart")}
+            >
+              <ShoppingCartIcon />
+            </IconButton>
           </Box>
         </Toolbar>
 
-        {/* ArticleSearch for xs */}
+        {/* ArticleSearch for mobile */}
         <Toolbar
           sx={{
             display: {
@@ -160,7 +172,7 @@ export default function AppBar() {
               xs: "40px",
               md: "60px",
             },
-      
+
             justifyContent: { xs: "space-between", md: "start" },
             padding: 1,
             minHeight: 0,

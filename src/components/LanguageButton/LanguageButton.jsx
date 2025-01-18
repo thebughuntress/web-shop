@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Box, Button, Menu, MenuItem, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Menu,
+  MenuItem,
+  Typography,
+  IconButton,
+} from "@mui/material";
 import LanguageIcon from "@mui/icons-material/Language";
 import { useTranslation } from "react-i18next";
 
@@ -31,17 +38,30 @@ const LanguageButton = () => {
   };
 
   return (
-    <Box sx={{ marginX: 2 }}>
+    <Box sx={{ marginX: 1 }}>
       <Button
         startIcon={<LanguageIcon />}
         onClick={handleClick}
         sx={{
           color: "white",
           fontSize: "18px",
+          display: { xs: "none", md: "block" },
         }}
       >
         {LANGUAGES.find((lang) => lang.code === currentLanguage)?.name}
       </Button>
+
+      <IconButton
+        sx={{
+          fontSize: "24px",
+          color: "white",
+          display: { xs: "block", md: "none" },
+        }}
+        onClick={handleClick}
+      >
+        <LanguageIcon />
+      </IconButton>
+
       <Menu
         anchorEl={anchorEl}
         open={open}
