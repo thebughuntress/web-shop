@@ -4,7 +4,7 @@
 Check out the live version of the project hosted on GitHub Pages: [Web Shop](https://thebughuntress.github.io/web-shop/).
 
 ## Tech Stack
-- **React.js**: A powerful JavaScript library for building user interfaces.
+- **ReactJS**: A powerful JavaScript library for building user interfaces.
 - **Vite**: A fast and lightweight build tool for modern web development.
 - **Material-UI**: A popular React component library for elegant and responsive design.
 - **React Router**: Library for handling client-side routing with ease.
