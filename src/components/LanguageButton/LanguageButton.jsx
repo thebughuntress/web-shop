@@ -4,13 +4,13 @@ import LanguageIcon from "@mui/icons-material/Language";
 import { useTranslation } from "react-i18next";
 
 const LANGUAGES = [
-  { code: "en", name: "English" }, 
-  { code: "fr", name: "Français" },
-  { code: "de", name: "Deutsch" },
+  { code: "en", name: "EN" },
+  { code: "fr", name: "FR" },
+  { code: "de", name: "DE" },
 ];
 
 const LanguageButton = () => {
-  const { i18n } = useTranslation(); 
+  const { i18n } = useTranslation();
   const [anchorEl, setAnchorEl] = useState(null);
   const [currentLanguage, setCurrentLanguage] = useState(i18n.language); // Set initial language from i18n
 

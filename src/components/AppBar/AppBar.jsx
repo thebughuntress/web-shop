@@ -44,7 +44,6 @@ export default function AppBar() {
     console.log("x", categoryKey);
 
     if (categoryKey === "all-articles") {
-      
       navigate("/articles");
     } else {
       navigate(`/articles#${categoryKey.toLowerCase().replace(/ /g, "-")}`);
@@ -64,7 +63,7 @@ export default function AppBar() {
       <MuiAppBar position="static">
         <Toolbar
           sx={{
-            height: "85px",
+            height: { xs: "70px", md: "85px" },
             backgroundColor: "primary.dark",
             display: "flex",
             justifyContent: "space-between",
@@ -98,6 +97,7 @@ export default function AppBar() {
               </Typography>
             </Box>
           </Box>
+
           <Box
             sx={{
               display: {
@@ -132,31 +132,44 @@ export default function AppBar() {
           </Box>
         </Toolbar>
 
+        {/* ArticleSearch for xs */}
         <Toolbar
           sx={{
-            backgroundColor: "primary",
-            height: "68px",
-            display: "flex",
-            justifyContent: { xs: "space-between", md: "start" },
+            display: {
+              xs: "flex",
+              md: "none",
+            },
+            height: "50px",
+            backgroundColor: "primary.main",
+            justifyContent: "center",
+            alignItems: "center",
+            p: 1,
           }}
         >
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-            onClick={() => navigate("/articles")}
-          >
-            <MenuIcon />
-          </IconButton>
+          <ArticleSearch />
+        </Toolbar>
 
+        <Toolbar
+          sx={{
+            display: {
+              xs: "none",
+              md: "flex",
+            },
+            backgroundColor: "primary",
+            height: {
+              xs: "40px",
+              md: "60px",
+            },
+      
+            justifyContent: { xs: "space-between", md: "start" },
+            padding: 1,
+            minHeight: 0,
+          }}
+          disableGutters
+        >
           <Box
             sx={{
-              display: {
-                xs: "none",
-                md: "block",
-              },
+              height: "100%", // Ensure Box fits within Toolbar
             }}
           >
             {categories.map(({ label, key }) => (
@@ -165,7 +178,7 @@ export default function AppBar() {
                 color="inherit"
                 onClick={() => handleCategoryClick(key)}
                 sx={{
-                  height: "68px",
+                  height: "100%", // Match parent height
                   borderRadius: 0,
                   borderBottom:
                     selectedCategory === key ? "4px solid white" : "none",
@@ -176,20 +189,6 @@ export default function AppBar() {
                 {label}
               </Button>
             ))}
-          </Box>
-
-          <Box
-            sx={{
-              width: "80%",
-              display: {
-                xs: "block",
-                md: "none",
-              },
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <ArticleSearch />
           </Box>
         </Toolbar>
       </MuiAppBar>

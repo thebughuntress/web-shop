@@ -34,18 +34,23 @@ const Search = () => {
       InputProps={{
         startAdornment: (
           <InputAdornment position="start">
-            <SearchIcon sx={{ marginRight: 1 }} />
+            <SearchIcon />
           </InputAdornment>
         ),
       }}
       sx={{
+        m: 1,
         backgroundColor: "white",
         borderRadius: "4px",
         width: "80%",
-        height: "50px",
-        paddingTop: 0,
-        paddingBottom: 0,
-        lineHeight: "50px",
+        height:  {xs: "40px", md: "50px"},
+        padding: 0,
+        "& input": {
+          padding: "0 7px",
+          height: {xs: "40px", md: "50px"},
+          textAlign: "start",
+          //backgroundColor: "red"
+        },
       }}
       placeholder={t("search") + "..."}
     />
