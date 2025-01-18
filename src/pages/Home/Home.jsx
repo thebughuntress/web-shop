@@ -67,7 +67,7 @@ function Home() {
         <Box
           sx={{
             marginY: 2,
-            marginX: { xs: 1, lg: "160px", xl: "340px" },
+            marginX: { xs: 1, lg: "160px", xl: "280px" },
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "center",

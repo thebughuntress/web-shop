@@ -12,6 +12,7 @@ import {
   TableHead,
   TableRow,
   Typography,
+  Tooltip,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -284,15 +285,21 @@ const CartPage = () => {
                         <Typography sx={{ fontWeight: "bold", mr: 1 }}>
                           {item.article.name}
                         </Typography>
-                        <IconButton
-                          size="small"
-                          onClick={() =>
-                            handleDeleteArticleFromCart(item.article.id)
-                          }
-                          title={t("delete-article")}
+                        <Tooltip
+                          title={t("delete-article-tt")}
+                          placement="right" 
+                          arrow
                         >
-                          <HighlightOffIcon />
-                        </IconButton>
+                          <IconButton
+                            size="small"
+                            onClick={() =>
+                              handleDeleteArticleFromCart(item.article.id)
+                            }
+                            title={t("delete-article")}
+                          >
+                            <HighlightOffIcon />
+                          </IconButton>
+                        </Tooltip>
                       </Box>
                     </TableCell>
                     <TableCell align="center">{item.article.price} €</TableCell>
@@ -338,7 +345,9 @@ const CartPage = () => {
                   }}
                 >
                   <TableCell colSpan={3} align="right">
-                    <Typography fontWeight="bold">{t("grand-total")}:</Typography>
+                    <Typography fontWeight="bold">
+                      {t("grand-total")}:
+                    </Typography>
                   </TableCell>
                   <TableCell align="right">
                     <Typography fontWeight="bold">

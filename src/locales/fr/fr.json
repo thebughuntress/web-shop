@@ -23,5 +23,6 @@
   "available": "Disponible",
   "not-available": "Actuellement indisponible",
   "search": "Rechercher",
-  "all-articles": "Tous les articles"
+  "all-articles": "Tous les articles",
+  "delete-article-tt": "Supprimer l'article du panier"
 }

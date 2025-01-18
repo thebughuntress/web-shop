@@ -23,5 +23,6 @@
   "available": "Available",
   "not-available": "Not Available",
   "search": "Search",
-  "all-articles": "All Articles"
+  "all-articles": "All Articles",
+    "delete-article-tt": "Remove article from cart"
 }

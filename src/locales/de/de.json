@@ -23,5 +23,6 @@
   "available": "Verfügbar",
   "not-available": "Derzeit nicht auf Lager",
   "search": "Suche Artikel",
-  "all-articles": "Alle Artikel"
+  "all-articles": "Alle Artikel",
+  "delete-article-tt": "Artikel vom Warenkorb entfernen"
 }
