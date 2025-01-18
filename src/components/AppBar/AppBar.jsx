@@ -16,7 +16,6 @@ import ArticleSearch from "../ArticleSearch/ArticleSearch";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
-
 import { setCategory } from "../../store/categorySlice";
 
 export default function AppBar() {
@@ -31,23 +30,25 @@ export default function AppBar() {
   );
 
   const categories = [
-   `${t('all-articles')}`,
-    "Programming",
-    "Productivity",
-    "Web Development",
-    "Database",
-    "Data Science",
-    "Mobile Development",
-    "Blockchain",
+    { label: `${t("all-articles")}`, key: "all-articles" },
+    { label: "Programming", key: "programming" },
+    { label: "Productivity", key: "productivity" },
+    { label: "Web Development", key: "web-development" },
+    { label: "Database", key: "database" },
+    { label: "Data Science", key: "data-science" },
+    { label: "Mobile Development", key: "mobile-development" },
+    { label: "Blockchain", key: "blockchain" },
   ];
 
-  const handleCategoryClick = (category) => {
-    dispatch(setCategory(category));
+  const handleCategoryClick = (categoryKey) => {
+    dispatch(setCategory(categoryKey));
+    console.log("x", categoryKey);
 
-    if (category === "All Articles") {
+    if (categoryKey === "all-articles") {
+      
       navigate("/articles");
     } else {
-      navigate(`/articles#${category.toLowerCase().replace(/ /g, "-")}`);
+      navigate(`/articles#${categoryKey.toLowerCase().replace(/ /g, "-")}`);
     }
   };
 
@@ -127,7 +128,7 @@ export default function AppBar() {
               startIcon={<ShoppingCartIcon />}
               onClick={() => navigate("/cart")}
             >
-              {t('cart')}
+              {t("cart")}
             </Button>
           </Box>
         </Toolbar>
@@ -159,21 +160,21 @@ export default function AppBar() {
               },
             }}
           >
-            {categories.map((category) => (
+            {categories.map(({ label, key }) => (
               <Button
-                key={category}
+                key={key}
                 color="inherit"
-                onClick={() => handleCategoryClick(category)}
+                onClick={() => handleCategoryClick(key)}
                 sx={{
                   height: "68px",
                   borderRadius: 0,
                   borderBottom:
-                    selectedCategory === category ? "4px solid white" : "none",
+                    selectedCategory === key ? "4px solid white" : "none",
                   paddingBottom: "5px",
-                  fontWeight: selectedCategory === category ? "bold" : "normal", // Optionally make selected category bold
+                  fontWeight: selectedCategory === key ? "bold" : "normal",
                 }}
               >
-                {category}
+                {label}
               </Button>
             ))}
           </Box>

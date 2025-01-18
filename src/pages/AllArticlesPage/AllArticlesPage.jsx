@@ -45,11 +45,10 @@ function AllArticlesPage() {
     let filtered = articles;
 
     // Filter by selected category
-    if (selectedCategory && selectedCategory !== "All Articles") {
-      filtered = filtered.filter(
-        (article) =>
-          article.category.toLowerCase() === selectedCategory.toLowerCase()
-      );
+    if (selectedCategory && selectedCategory !== "all-articles") {
+      filtered = filtered.filter((article) => {
+        article.category.key === selectedCategory;
+      });
     }
 
     // Filter by search text
