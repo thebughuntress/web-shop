@@ -4,10 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { getArticles } from "../../api";
 import ArticleCard from "../../components/ArticleCard/ArticleCard";
 import { setSearchText } from "../../store/articleSlice";
+import { setCategory } from "../../store/categorySlice";
 import { useTranslation } from "react-i18next";
 
 function AllArticlesPage() {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const searchText = useSelector((state) => state.articles.searchText);
+  const selectedCategoryKey = useSelector(
+    (state) => state.category.selectedCategory
+  );
   const [articles, setArticles] = useState([]);
   const [filteredArticles, setFilteredArticles] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -33,22 +39,15 @@ function AllArticlesPage() {
     fetchArticles();
   }, []);
 
-  const dispatch = useDispatch();
-  // Get searchText and category from Redux store
-  const searchText = useSelector((state) => state.articles.searchText);
-  const selectedCategory = useSelector(
-    (state) => state.category.selectedCategory
-  );
-
   // Effect to filter articles when search text or selected category changes
   useEffect(() => {
     let filtered = articles;
 
     // Filter by selected category
-    if (selectedCategory && selectedCategory !== "all-articles") {
-      filtered = filtered.filter((article) => {
-        article.category.key === selectedCategory;
-      });
+    if (selectedCategoryKey && selectedCategoryKey !== "all-articles") {
+      filtered = filtered.filter(
+        (article) => article.category.key === selectedCategoryKey
+      );
     }
 
     // Filter by search text
@@ -57,18 +56,18 @@ function AllArticlesPage() {
       filtered = filtered.filter(
         (article) =>
           article.name.toLowerCase().includes(lowerCaseSearchText) ||
-          article.description.toLowerCase().includes(lowerCaseSearchText) ||
-          article.category.toLowerCase().includes(lowerCaseSearchText)
+          article.description.toLowerCase().includes(lowerCaseSearchText)
       );
     }
 
     // Update filtered articles
     setFilteredArticles(filtered);
-  }, [articles, selectedCategory, searchText]);
+  }, [articles, selectedCategoryKey, searchText]);
 
   const handleClearSearch = () => {
-    // Dispatch the action to clear the search text
+    // Dispatch the action to clear the search text 
     dispatch(setSearchText(""));
+    dispatch(setCategory("all-articles"));
   };
 
   if (loading) {
@@ -100,13 +99,16 @@ function AllArticlesPage() {
     <Box
       sx={{
         marginY: 2,
-        //backgroundColor: {xs: "red", lg: "green", xl: "yellow"},
+        //backgroundColor: { xs: "red", lg: "green", xl: "yellow" },
         marginX: { xs: 1, lg: "160px", xl: "340px" },
         display: "flex",
         flexWrap: "wrap",
+        justifyContent: "center",
+        //justifyContent: "space-between",
+        alignItems: "center",
         rowGap: 5,
         columnGap: 1,
-        justifyContent: "space-between",
+
         paddingTop: 5,
       }}
     >
@@ -118,6 +120,8 @@ function AllArticlesPage() {
         <Box
           sx={{
             display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
             flexDirection: "column",
           }}
         >
@@ -126,7 +130,8 @@ function AllArticlesPage() {
             color="primary.light"
             sx={{ fontWeight: 500 }}
           >
-            {t("no-results")} <b>{searchText}</b>
+            {t("no-results")}{" "}
+            <b>{searchText ? searchText : selectedCategoryKey}</b>
           </Typography>
           <Button sx={{ marginTop: 2 }} onClick={handleClearSearch}>
             {t("reset-search")}

@@ -15,7 +15,6 @@ import LanguageButton from "../LanguageButton/LanguageButton";
 import ArticleSearch from "../ArticleSearch/ArticleSearch";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-
 import { setCategory } from "../../store/categorySlice";
 
 export default function AppBar() {

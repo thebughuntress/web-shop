@@ -134,6 +134,16 @@
       "category": { "label": "Web Development", "key": "web-development" },
       "stock": 90,
       "imageUrl": ""
+    },
+    {
+      "id": 16,
+      "name": "ISTQB Certification Training",
+      "description": "Prepare for ISTQB certification with comprehensive software testing training.",
+      "price": 79.99,
+      "category": { "label": "Software Testing", "key": "software-testing" },
+      "stock": 50,
+      "imageUrl": ""
     }
+    
   ]
 }
