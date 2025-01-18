@@ -70,9 +70,10 @@ function Home() {
             marginX: { xs: 1, lg: "160px", xl: "340px" },
             display: "flex",
             flexWrap: "wrap",
+            justifyContent: "center",
+            alignItems: "center",
             rowGap: 5,
             columnGap: 1,
-            justifyContent: "space-between",
             paddingTop: 5,
           }}
         >

@@ -98,17 +98,15 @@ function AllArticlesPage() {
   return (
     <Box
       sx={{
-        marginY: 2,
         //backgroundColor: { xs: "red", lg: "green", xl: "yellow" },
+        marginY: 2,
         marginX: { xs: 1, lg: "160px", xl: "340px" },
         display: "flex",
         flexWrap: "wrap",
         justifyContent: "center",
-        //justifyContent: "space-between",
         alignItems: "center",
         rowGap: 5,
         columnGap: 1,
-
         paddingTop: 5,
       }}
     >

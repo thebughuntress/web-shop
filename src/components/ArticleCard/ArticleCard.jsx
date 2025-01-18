@@ -29,7 +29,7 @@ function ArticleCard({ article }) {
   return (
     <Card
       sx={{
-        width: { xs: "100%", md: "22%" },
+        width: { xs: "75%", md: "22%" },
         height: "320px",
         cursor: "pointer",
         boxShadow: 0,
