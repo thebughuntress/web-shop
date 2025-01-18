@@ -360,22 +360,24 @@ const CartPage = () => {
           </TableContainer>
         </>
       )}
-      <Box
-        sx={{
-          width: { xs: "95%", md: "80%" },
-          display: "flex",
-          justifyContent: "flex-end",
-          mt: 4,
-        }}
-      >
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => console.log("Payment initiated")}
+      {articles.length > 0 && (
+        <Box
+          sx={{
+            width: { xs: "95%", md: "80%" },
+            display: "flex",
+            justifyContent: "flex-end",
+            mt: 4,
+          }}
         >
-          {t("checkout")}
-        </Button>
-      </Box>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => console.log("Payment initiated")}
+          >
+            {t("checkout")}
+          </Button>
+        </Box>
+      )}
     </Box>
   );
 };
