@@ -123,7 +123,8 @@ export default function AppBar() {
               sx={{
                 fontSize: "18px",
                 display: { xs: "none", md: "flex" },
-                color: location.pathname == "/cart" ? "secondary.main" : "white",
+                color:
+                  location.pathname == "/cart" ? "secondary.main" : "white",
               }}
               startIcon={<ShoppingCartIcon />}
               onClick={() => navigate("/cart")}
@@ -167,13 +168,12 @@ export default function AppBar() {
           sx={{
             display: {
               xs: "none",
-              md: "flex",
+              md: "block",
             },
             height: {
               xs: "40px",
               md: "60px",
             },
-            alignItems: "center",
           }}
         >
           {categories.map(({ label, key }) => (
@@ -182,10 +182,7 @@ export default function AppBar() {
               color="inherit"
               onClick={() => handleCategoryClick(key)}
               sx={{
-                height: {
-                  xs: "42px",
-                  md: "64px",
-                },
+                height: "100%",
                 borderRadius: 0,
                 borderBottom:
                   selectedCategory === key ? "4px solid white" : "none",
