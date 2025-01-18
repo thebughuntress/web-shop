@@ -31,7 +31,7 @@ function Home() {
   return (
     articles.length > 0 && (
       <Box>
-        {/* Header Section */}
+        {/* Welcome Section */}
         <Box
           sx={{
             background: "linear-gradient(to right, lightyellow, white)",
@@ -48,7 +48,7 @@ function Home() {
             variant="h3"
             sx={{ fontSize: { xs: "28px", md: "50px" } }}
           >
-            {t("welcome")}
+            {t("welcome-to")} <b> {t("page")}</b>
           </Typography>
           <Typography
             variant="h5"

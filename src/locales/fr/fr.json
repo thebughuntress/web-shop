@@ -1,5 +1,6 @@
 {
-  "welcome": "Bienvenue sur webshop.com",
+  "welcome-to": "Bienvenue sur",
+  "page": "webshop.com",
   "slogan": "Élégance, qualité, et tradition.",
   "cart": "Panier",
   "add-to-cart": "Au Panier",
@@ -20,6 +21,7 @@
   "article": "Article",
   "total": "Total",
   "available": "Disponible",
+  "not-available": "Actuellement indisponible",
   "search": "Rechercher",
   "all-articles": "Tous les articles"
 }

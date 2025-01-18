@@ -6,6 +6,7 @@ import {
   CardContent,
   CardMedia,
   CircularProgress,
+  Divider,
   FormControl,
   InputLabel,
   MenuItem,
@@ -60,7 +61,14 @@ function ArticleDetailPage() {
   return (
     <Box sx={{ paddingTop: 4, m: 2 }}>
       {loading ? (
-        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "50vh" }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "50vh",
+          }}
+        >
           <CircularProgress />
         </Box>
       ) : error ? (
@@ -68,39 +76,88 @@ function ArticleDetailPage() {
           {error}
         </Typography>
       ) : article ? (
-        <Card sx={{ maxWidth: 800, margin: "auto", display: "flex", flexDirection: { xs: "column", md: "row" }, boxShadow: 3 }}>
+        <Card
+          sx={{
+            maxWidth: 800,
+            margin: "auto",
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            boxShadow: 3,
+          }}
+        >
           {/* Left side for image */}
           <CardMedia
             component="img"
-            sx={{ width: { xs: "100%", md: "40%" }, objectFit: "cover", height: { xs: 200, md: "auto" } }}
+            sx={{
+              width: { xs: "100%", md: "40%" },
+              objectFit: "cover",
+              height: { xs: 200, md: "auto" },
+            }}
             image={article.imageUrl || cardImgPlaceholder}
             alt={article.name}
           />
 
           {/* Right side for content */}
-          <Box sx={{ padding: 2, display: "flex", flexDirection: "column", width: { xs: "100%", md: "60%" } }}>
+          <Box
+            sx={{
+              padding: 2,
+              display: "flex",
+              flexDirection: "column",
+              width: { xs: "100%", md: "60%" },
+            }}
+          >
             <CardContent sx={{ flexGrow: 1 }}>
-              <Typography variant="h4" sx={{ fontWeight: "bold", mb: 2, color: "primary.dark", fontSize: { xs: "24px", md: "32px" } }}>
+              <Typography
+                variant="h4"
+                sx={{
+                  fontWeight: "bold",
+                  mb: 2,
+                  color: "primary.dark",
+                  fontSize: { xs: "24px", md: "32px" },
+                }}
+              >
                 {article.name}
               </Typography>
+              <Divider sx={{ marginY: 2 }} />
+              <Typography variant="h5" sx={{ mb: 1, color: "black" }}>
+                {article.price} €
+              </Typography>
+
               <Typography variant="body1" sx={{ mb: 1 }}>
                 {article.description}
               </Typography>
-              <Typography variant="h6" sx={{ mb: 1, color: "green" }}>
-                {t("price")}: {article.price} €
-              </Typography>
+
               <Typography variant="body2" sx={{ mb: 1 }}>
                 {t("category")}: {article.category.label}
               </Typography>
-              <Typography variant="body2" sx={{ mb: 1, color: "primary.light" }}>
-                {t("stock")}: {article.stock} {t("available")}
+              <Typography
+                variant="body1"
+                sx={{ mt: 2, color: article.stock > 0 ? "green" : "orange" }}
+              >
+                {article.stock > 0 ? t("available") : t("not-available")}
               </Typography>
             </CardContent>
 
-            <CardActions sx={{ display: "flex", justifyContent: "flex-end", flexDirection: { xs: "column", md: "row" }, gap: 2 }}>
-              <Box sx={{ display: "flex", flexDirection: "column", gap: 1, width: "100%" }}>
+            <CardActions
+              sx={{
+                display: "flex",
+                justifyContent: "flex-end",
+                flexDirection: { xs: "column", md: "row" },
+                gap: 2,
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 1,
+                  width: "100%",
+                }}
+              >
                 <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">{t("quantity")}</InputLabel>
+                  <InputLabel id="demo-simple-select-label">
+                    {t("quantity")}
+                  </InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
@@ -116,7 +173,12 @@ function ArticleDetailPage() {
                     <MenuItem value={10}>10</MenuItem>
                   </Select>
                 </FormControl>
-                <Button size="large" variant="contained" color="primary" onClick={handleAddToCart}>
+                <Button
+                  size="large"
+                  variant="contained"
+                  color="primary"
+                  onClick={handleAddToCart}
+                >
                   {t("add-to-cart")}
                 </Button>
               </Box>
@@ -128,7 +190,9 @@ function ArticleDetailPage() {
           {t("article-not-found")}
         </Typography>
       )}
-      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+      <Box
+        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+      >
         <Button sx={{ marginTop: 4 }} onClick={() => navigate("/articles")}>
           {t("back-to-all-articles")}
         </Button>

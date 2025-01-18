@@ -1,5 +1,6 @@
 {
-  "welcome": "Welcome to webshop.com",
+  "welcome-to": "Welcome to",
+  "page": "webshop.com",
   "slogan": "Shop Smart, Shop Better!",
   "cart": "Cart",
   "add-to-cart": "Add to Cart",
@@ -20,6 +21,7 @@
   "article": "Article",
   "total": "Total",
   "available": "Available",
+  "not-available": "Not Available",
   "search": "Search",
   "all-articles": "All Articles"
 }

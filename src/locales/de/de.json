@@ -1,5 +1,6 @@
 {
-  "welcome": "Willkommen auf webshop.com",
+  "welcome-to": "Willkommen auf",
+  "page": "webshop.com",
   "slogan": "Nur ein Klick entfernt – Dein Wunschprodukt wartet.",
   "cart": "Warenkorb",
   "add-to-cart": "Kaufen",
@@ -20,6 +21,7 @@
   "article": "Artikel",
   "total": "Total",
   "available": "Verfügbar",
+  "not-available": "Derzeit nicht auf Lager",
   "search": "Suche Artikel",
   "all-articles": "Alle Artikel"
 }

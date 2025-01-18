@@ -36,12 +36,10 @@ export default function AppBar() {
     { label: "Database", key: "database" },
     { label: "Data Science", key: "data-science" },
     { label: "Mobile Development", key: "mobile-development" },
-    { label: "Blockchain", key: "blockchain" },
   ];
 
   const handleCategoryClick = (categoryKey) => {
     dispatch(setCategory(categoryKey));
-    console.log("x", categoryKey);
 
     if (categoryKey === "all-articles") {
       navigate("/articles");
@@ -52,8 +50,7 @@ export default function AppBar() {
 
   // Effect to run when the route changes
   React.useEffect(() => {
-    const path = location.pathname;
-    if (path !== "/articles") {
+    if (location.pathname !== "/articles") {
       dispatch(setCategory(""));
     }
   }, [location, dispatch]);
@@ -123,8 +120,11 @@ export default function AppBar() {
             <LanguageButton />
 
             <Button
-              sx={{ fontSize: "18px", display: { xs: "none", md: "block" } }}
-              color="inherit"
+              sx={{
+                fontSize: "18px",
+                display: { xs: "none", md: "flex" },
+                color: location.pathname == "/cart" ? "secondary.main" : "white",
+              }}
               startIcon={<ShoppingCartIcon />}
               onClick={() => navigate("/cart")}
             >
@@ -133,9 +133,11 @@ export default function AppBar() {
 
             <IconButton
               sx={{
-                fontSize: "24px", 
-                color: "inherit",
-                display: { xs: "block", md: "none" } 
+                fontSize: "24px",
+                display: { xs: "block", md: "none" },
+
+                color:
+                  location.pathname == "/cart" ? "secondary.main" : "white",
               }}
               onClick={() => navigate("/cart")}
             >
@@ -155,7 +157,7 @@ export default function AppBar() {
             backgroundColor: "primary.main",
             justifyContent: "center",
             alignItems: "center",
-            p: 1,
+            p: 4,
           }}
         >
           <ArticleSearch />
@@ -167,41 +169,32 @@ export default function AppBar() {
               xs: "none",
               md: "flex",
             },
-            backgroundColor: "primary",
             height: {
               xs: "40px",
               md: "60px",
             },
-
-            justifyContent: { xs: "space-between", md: "start" },
-            padding: 1,
-            minHeight: 0,
+            alignItems: "center",
           }}
-          disableGutters
         >
-          <Box
-            sx={{
-              height: "100%", // Ensure Box fits within Toolbar
-            }}
-          >
-            {categories.map(({ label, key }) => (
-              <Button
-                key={key}
-                color="inherit"
-                onClick={() => handleCategoryClick(key)}
-                sx={{
-                  height: "100%", // Match parent height
-                  borderRadius: 0,
-                  borderBottom:
-                    selectedCategory === key ? "4px solid white" : "none",
-                  paddingBottom: "5px",
-                  fontWeight: selectedCategory === key ? "bold" : "normal",
-                }}
-              >
-                {label}
-              </Button>
-            ))}
-          </Box>
+          {categories.map(({ label, key }) => (
+            <Button
+              key={key}
+              color="inherit"
+              onClick={() => handleCategoryClick(key)}
+              sx={{
+                height: {
+                  xs: "42px",
+                  md: "64px",
+                },
+                borderRadius: 0,
+                borderBottom:
+                  selectedCategory === key ? "4px solid white" : "none",
+                fontWeight: selectedCategory === key ? "bold" : "normal",
+              }}
+            >
+              {label}
+            </Button>
+          ))}
         </Toolbar>
       </MuiAppBar>
     </Box>

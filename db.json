@@ -60,7 +60,7 @@
       "description": "Learn the basics of C++ programming with this complete package.",
       "price": 45.99,
       "category": { "label": "Programming", "key": "programming" },
-      "stock": 80,
+      "stock": 0,
       "imageUrl": ""
     },
     {
@@ -105,7 +105,7 @@
       "description": "Get up to speed with Ruby on Rails for web application development.",
       "price": 49.99,
       "category": { "label": "Web Development", "key": "web-development" },
-      "stock": 60,
+      "stock": 0,
       "imageUrl": ""
     },
     {
@@ -123,7 +123,7 @@
       "description": "Start your journey into machine learning with Python.",
       "price": 79.99,
       "category": { "label": "Data Science", "key": "data-science" },
-      "stock": 50,
+      "stock": 0,
       "imageUrl": ""
     },
     {

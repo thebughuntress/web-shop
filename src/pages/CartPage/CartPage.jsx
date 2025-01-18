@@ -68,8 +68,6 @@ const CartPage = () => {
     setLoading(true);
 
     try {
-      console.log(cartItems);
-
       // Map cartItems to include article details
       const elements = cartItems
         .map((cartItem) => {
