@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { getArticles } from "../../api";
 import ArticleCard from "../../components/ArticleCard/ArticleCard";
 import { useTranslation } from "react-i18next";
+import ScrollUpButton from "../../components/ScrollUpButton/ScrollUpButton";
 
 function Home() {
   const { t, i18n } = useTranslation();
@@ -46,7 +47,7 @@ function Home() {
         >
           <Typography
             variant="h3"
-            sx={{ fontSize: { xs: "28px", md: "50px" } }}
+            sx={{ paddingX: 4, fontSize: { xs: "28px", md: "50px" } }}
           >
             {t("welcome-to")} <b> {t("page")}</b>
           </Typography>
@@ -95,6 +96,7 @@ function Home() {
               ? t("all-articles-shown")
               : t("show-more-articles")}
           </Button>
+          <ScrollUpButton showButton={allArticlesVisible} />
         </Box>
       </Box>
     )

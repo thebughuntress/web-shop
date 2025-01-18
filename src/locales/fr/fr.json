@@ -24,5 +24,6 @@
   "not-available": "Actuellement indisponible",
   "search": "Rechercher",
   "all-articles": "Tous les articles",
-  "delete-article-tt": "Supprimer l'article du panier"
+  "delete-article-tt": "Supprimer l'article du panier",
+  "checkout": "Passer à la caisse"
 }

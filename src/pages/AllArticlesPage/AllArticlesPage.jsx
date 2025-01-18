@@ -6,6 +6,7 @@ import ArticleCard from "../../components/ArticleCard/ArticleCard";
 import { setSearchText } from "../../store/articleSlice";
 import { setCategory } from "../../store/categorySlice";
 import { useTranslation } from "react-i18next";
+import ScrollUpButton from "../../components/ScrollUpButton/ScrollUpButton";
 
 function AllArticlesPage() {
   const { t } = useTranslation();
@@ -65,7 +66,7 @@ function AllArticlesPage() {
   }, [articles, selectedCategoryKey, searchText]);
 
   const handleClearSearch = () => {
-    // Dispatch the action to clear the search text 
+    // Dispatch the action to clear the search text
     dispatch(setSearchText(""));
     dispatch(setCategory("all-articles"));
   };
@@ -103,7 +104,10 @@ function AllArticlesPage() {
         marginX: { xs: 1, lg: "160px", xl: "280px" },
         display: "flex",
         flexWrap: "wrap",
-        justifyContent: "center",
+        justifyContent:
+          filteredArticles.length <= 3 && filteredArticles.length > 0
+            ? "flex-start"
+            : "center",
         alignItems: "center",
         rowGap: 5,
         columnGap: 1,
@@ -111,9 +115,12 @@ function AllArticlesPage() {
       }}
     >
       {filteredArticles.length > 0 ? (
-        filteredArticles.map((article) => (
-          <ArticleCard key={article.id} article={article} />
-        ))
+        <>
+          {filteredArticles.map((article) => (
+            <ArticleCard key={article.id} article={article} />
+          ))}
+          <ScrollUpButton />
+        </>
       ) : (
         <Box
           sx={{
