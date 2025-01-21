@@ -24,8 +24,9 @@ function AllArticlesPage() {
       try {
         setLoading(true);
 
-        // Introduce a fake delay
-        await new Promise((resolve) => setTimeout(resolve, 700));
+        // Introduce a random fake delay between 0 and 1000ms
+        const randomDelay = Math.floor(Math.random() * 1000);
+        await new Promise((resolve) => setTimeout(resolve, randomDelay));
 
         const data = await getArticles();
         setArticles(data);
@@ -98,28 +99,28 @@ function AllArticlesPage() {
 
   return (
     <Box
-    sx={{
-      //backgroundColor: { xs: "red", lg: "green", xl: "yellow" },
-      marginY: 2,
-      marginX: { xs: 1, lg: "160px", xl: "280px" },
-      display: "flex",
-      flexWrap: "wrap",
-      justifyContent: filteredArticles.length <= 3 && filteredArticles.length > 0
-        ? { xs: "center", md: "flex-start" } 
-        : "center",
-      alignItems: "center",
-      rowGap: 5,
-      columnGap: 1,
-      paddingTop: 5,
-    }}
-    
+      sx={{
+        //backgroundColor: { xs: "red", lg: "green", xl: "yellow" },
+        marginY: 2,
+        marginX: { xs: 1, lg: "120px", xl: "280px" },
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent:
+          filteredArticles.length <= 3 && filteredArticles.length > 0
+            ? { xs: "center", md: "flex-start" }
+            : "center",
+        alignItems: "center",
+        rowGap: 5,
+        columnGap: 1,
+        paddingTop: 5,
+      }}
     >
       {filteredArticles.length > 0 ? (
         <>
           {filteredArticles.map((article) => (
             <ArticleCard key={article.id} article={article} />
           ))}
-          <ScrollUpButton />
+          {filteredArticles.length > 8 && <ScrollUpButton />}
         </>
       ) : (
         <Box

@@ -4,18 +4,16 @@ import {
   AppBar as MuiAppBar,
   Toolbar,
   Typography,
-  Button,
-  IconButton,
+  Button
 } from "@mui/material";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import shopIcon from "../../assets/icons/icons8-shopee-100.png";
 import { useNavigate, useLocation } from "react-router-dom";
-import MenuIcon from "@mui/icons-material/Menu";
 import LanguageButton from "../LanguageButton/LanguageButton";
 import ArticleSearch from "../ArticleSearch/ArticleSearch";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { setCategory } from "../../store/categorySlice";
+import CartButtonWithArticlesCount from "../CartButtonWithArticlesCount/CartButtonWithArticlesCount";
 
 export default function AppBar() {
   const { t } = useTranslation();
@@ -118,32 +116,9 @@ export default function AppBar() {
             }}
           >
             <LanguageButton />
-
-            <Button
-              sx={{
-                fontSize: "18px",
-                display: { xs: "none", md: "flex" },
-                color:
-                  location.pathname == "/cart" ? "secondary.main" : "white",
-              }}
-              startIcon={<ShoppingCartIcon />}
-              onClick={() => navigate("/cart")}
-            >
-              {t("cart")}
-            </Button>
-
-            <IconButton
-              sx={{
-                fontSize: "24px",
-                display: { xs: "block", md: "none" },
-
-                color:
-                  location.pathname == "/cart" ? "secondary.main" : "white",
-              }}
-              onClick={() => navigate("/cart")}
-            >
-              <ShoppingCartIcon />
-            </IconButton>
+            <CartButtonWithArticlesCount
+              color={location.pathname == "/cart" ? "secondary.main" : "white"}
+            />
           </Box>
         </Toolbar>
 

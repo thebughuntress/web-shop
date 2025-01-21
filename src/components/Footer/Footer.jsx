@@ -18,7 +18,7 @@ function Footer() {
         width: "100%",
       }}
     >
-      <Typography variant="body2" sx={{ marginBottom: 1 }}>
+      <Typography variant="body1" sx={{ marginBottom: 1 }}>
         Created with ❤️ using{" "}
         <Link
           href="https://vitejs.dev/"
@@ -46,9 +46,8 @@ function Footer() {
         >
           Material-UI
         </Link>
-        .
       </Typography>
-      <Typography variant="body2">
+      <Typography variant="body1">
         Icons by{" "}
         <Link
           href="https://icons8.com/"
@@ -57,11 +56,23 @@ function Footer() {
           color="inherit"
         >
           icons8
+        </Link>{" "}
+        and{" "}
+        <Link
+          href="https://flaticon.com"
+          target="_blank"
+          rel="noopener"
+          color="inherit"
+        >
+          flaticon.com
         </Link>
-      
       </Typography>
-      <Typography variant="body2" sx={{ textAlign: "center", marginTop: 2 }}>
-        &copy; {new Date().getFullYear()} WebShop. All rights reserved.
+      <Typography
+        variant="body2"
+        sx={{ textAlign: "center", fontWeight: 300, marginTop: 4 }}
+      >
+        &copy; {new Date().getFullYear()} Antonia Frey - WebShop. All rights
+        reserved.
       </Typography>
     </Box>
   );

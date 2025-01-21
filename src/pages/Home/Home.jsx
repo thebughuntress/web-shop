@@ -68,7 +68,7 @@ function Home() {
         <Box
           sx={{
             marginY: 2,
-            marginX: { xs: 1, lg: "160px", xl: "280px" },
+            marginX: { xs: 1, lg: "120px", xl: "280px" },
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "center",
@@ -76,6 +76,12 @@ function Home() {
             rowGap: 5,
             columnGap: 1,
             paddingTop: 5,
+           /*  backgroundColor: {
+              xs: "red",
+              md: "green",
+              lg: "blue",
+              xl: "yellow",
+            }, */
           }}
         >
           {articles.slice(0, numberOfArticles).map((article) => (

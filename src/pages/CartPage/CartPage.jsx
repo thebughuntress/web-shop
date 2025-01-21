@@ -18,23 +18,23 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getArticles } from "../../api";
-import emptyCartIcon from "../../assets/icons/icons8-empty-100.png";
+import emptyCartImg from "../../assets/images/cart.png";
 import {
   addToCart,
   reduceQuantityOfArticleInCart,
   removeArticleFromCart,
 } from "../../store/articleSlice";
 import { useTranslation } from "react-i18next";
+import { alpha } from "@mui/material/styles";
 
 const CartPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [articles, setArticles] = useState([]);
+  const [articlesInCart, setArticlesInCart] = useState([]);
   const [grandTotal, setGrandTotal] = useState();
   const dispatch = useDispatch();
-
   const [articlesData, setArticlesData] = useState([]);
 
   useEffect(() => {
@@ -43,10 +43,9 @@ const CartPage = () => {
         const data = await getArticles();
         setArticlesData(data);
       } catch (error) {
-        console.error("Error fetching articles:", error);
+        console.error("Error fetching articles data:", error);
       }
     };
-
     fetchArticles();
   }, []);
 
@@ -85,8 +84,7 @@ const CartPage = () => {
           return null;
         })
         .filter((item) => item !== null);
-
-      setArticles(elements);
+      setArticlesInCart(elements);
     } catch (err) {
       console.error("Error processing cart items:", err);
       setError("Failed to process cart items.");
@@ -97,11 +95,11 @@ const CartPage = () => {
 
   useEffect(() => {
     // Calculate the grand total
-    if (articles.length > 0) {
-      const total = articles.reduce((acc, item) => acc + item.total, 0);
+    if (articlesInCart.length > 0) {
+      const total = articlesInCart.reduce((acc, item) => acc + item.total, 0);
       setGrandTotal(total);
     }
-  }, [articles]);
+  }, [articlesInCart]);
 
   return (
     <Box
@@ -113,30 +111,33 @@ const CartPage = () => {
         flexDirection: "column",
       }}
     >
-      {!loading && articles.length === 0 && !error && (
-        <>
-          <img
-            src={emptyCartIcon}
-            alt="cart icon"
-            style={{ width: 70, height: "auto" }}
-          />
-          <Typography
-            variant="h5"
-            sx={{
-              my: 2,
-              color: "primary.dark",
-              fontWeight: "bold",
-            }}
-          >
-            {t("cart-empty")}
-          </Typography>
-          <Button sx={{ marginTop: 2 }} onClick={() => navigate("/articles")}>
-            {t("show-articles")}
-          </Button>
-        </>
-      )}
+      {!loading &&
+        articlesInCart.length === 0 &&
+        articlesData.length > 0 &&
+        !error && (
+          <>
+            <img
+              src={emptyCartImg}
+              alt="cart icon"
+              style={{ width: 160, height: "auto" }}
+            />
+            <Typography
+              variant="h5"
+              sx={{
+                my: 2,
+                color: "primary.dark",
+                fontWeight: "bold",
+              }}
+            >
+              {t("cart-empty")}
+            </Typography>
+            <Button sx={{ marginTop: 2 }} onClick={() => navigate("/articles")}>
+              {t("show-articles")}
+            </Button>
+          </>
+        )}
 
-      {articles.length > 0 && (
+      {articlesInCart.length > 0 && (
         <>
           {/* Mobile Table (xs view) */}
           <TableContainer
@@ -144,14 +145,14 @@ const CartPage = () => {
             sx={{
               display: { xs: "block", md: "none" }, // Only visible for xs screens
               width: "95%",
-              margin: "auto",
+              marginY: 2,
               backgroundColor: "#f5f5f5",
-              padding: 2,
+              padding: 1,
             }}
           >
             <Table>
               <TableBody>
-                {articles.map((item, index) => (
+                {articlesInCart.map((item, index) => (
                   <TableRow key={index}>
                     {/* Article Details */}
                     <TableCell>
@@ -278,7 +279,7 @@ const CartPage = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {articles.map((item, index) => (
+                {articlesInCart.map((item, index) => (
                   <TableRow key={index}>
                     <TableCell>
                       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -295,6 +296,10 @@ const CartPage = () => {
                             onClick={() =>
                               handleDeleteArticleFromCart(item.article.id)
                             }
+                            sx={{
+                              color: (theme) =>
+                                alpha(theme.palette.primary.main, 0.4),
+                            }}
                           >
                             <HighlightOffIcon />
                           </IconButton>
@@ -359,13 +364,13 @@ const CartPage = () => {
           </TableContainer>
         </>
       )}
-      {articles.length > 0 && (
+      {articlesInCart.length > 0 && (
         <Box
           sx={{
             width: { xs: "95%", md: "80%" },
             display: "flex",
             justifyContent: "flex-end",
-            mt: 4,
+            mt: 2,
           }}
         >
           <Button
